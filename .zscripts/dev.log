@@ -190,3 +190,8 @@ Use 'kill 1226' to stop it.
  GET / 200 in 26ms (compile: 3ms, render: 23ms)
   Reload env: .env
  GET / 200 in 53ms (compile: 29ms, render: 25ms)
+ GET / 200 in 52ms (compile: 5ms, render: 47ms)
+  Reload env: .env
+⚠ Cross origin request detected from preview-chat-582768a9-7213-476f-8e62-5c569e37a9a4.space-z.ai to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ GET / 200 in 37ms (compile: 22ms, render: 15ms)

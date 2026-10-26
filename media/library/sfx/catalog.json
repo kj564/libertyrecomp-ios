@@ -796,7 +796,7 @@
       "desc": "C major triad (I) — warm electric-piano voicing",
       "function": "content",
       "source": "gen_chords.py (deterministic additive synth, equal temperament A4=440)",
-      "duration_s": 2.6,
+      "duration_s": 2.638,
       "used_in": [
         "short-9-chords"
       ]

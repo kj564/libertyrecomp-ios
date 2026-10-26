@@ -11,3 +11,6 @@
 [00:00:00.776] Server  LOG     ✓ Ready in 578ms
 [00:00:03.886] Server  LOG     ○ Compiling / ...
 [00:01:26.285] Server  LOG       Reload env: .env
+[00:12:47.565] Server  LOG       Reload env: .env
+[00:12:50.433] Server  WARN    ⚠ Cross origin request detected from preview-chat-582768a9-7213-476f-8e62-5c569e37a9a4.space-z.ai to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
