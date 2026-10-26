@@ -1,0 +1,11 @@
+{
+  "prompt": "chess board showing checkmate position, queen and bishop coordinated attack on f7, dramatic lighting, premium minimal vertical composition, indigo and cream palette",
+  "model": "z-ai-free (z-ai-web-dev-sdk images.generations)",
+  "engine": "z-ai-free",
+  "aspect_ratio": "9:16",
+  "size": "768x1344",
+  "seed": null,
+  "refs": [],
+  "ref_supported": false,
+  "created": "2026-10-26T02:35:19"
+}

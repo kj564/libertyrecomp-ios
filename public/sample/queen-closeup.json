@@ -1,0 +1,11 @@
+{
+  "prompt": "dramatic close-up of a white chess queen on a dark board, cinematic lighting, premium minimal aesthetic, indigo accent glow, vertical composition",
+  "model": "z-ai-free (z-ai-web-dev-sdk images.generations)",
+  "engine": "z-ai-free",
+  "aspect_ratio": "9:16",
+  "size": "768x1344",
+  "seed": null,
+  "refs": [],
+  "ref_supported": false,
+  "created": "2026-10-26T02:34:51"
+}

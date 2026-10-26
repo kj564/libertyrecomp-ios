@@ -1,0 +1,11 @@
+{
+  "prompt": "minimalist chess board top-down view, clean premium aesthetic, soft indigo and cream tones, pieces in starting position, studio lighting, vertical composition",
+  "model": "z-ai-free (z-ai-web-dev-sdk images.generations)",
+  "engine": "z-ai-free",
+  "aspect_ratio": "9:16",
+  "size": "768x1344",
+  "seed": null,
+  "refs": [],
+  "ref_supported": false,
+  "created": "2026-10-26T02:33:43"
+}

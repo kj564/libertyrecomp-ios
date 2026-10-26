@@ -1,33 +1,9 @@
 ▲ Next.js 16.1.3 (Turbopack)
 - Local:         http://localhost:3000
-- Network:       http://21.0.3.186:3000
+- Network:       http://21.0.2.112:3000
 - Environments: .env
 
 ✓ Starting...
-Attention: Next.js now collects completely anonymous telemetry regarding usage.
-This information is used to shape Next.js' roadmap and prioritize features.
-You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
-https://nextjs.org/telemetry
-
-
-  We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
-  The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
-
-  	- include was updated to add '.next/dev/types/**/*.ts'
-
-  The following mandatory changes were made to your tsconfig.json:
-
-  	- jsx was set to react-jsx (next.js uses the React automatic runtime)
-
-✓ Ready in 578ms
-○ Compiling / ...
- GET / 200 in 3.6s (compile: 3.4s, render: 159ms)
- GET / 200 in 24ms (compile: 3ms, render: 21ms)
- GET / 200 in 26ms (compile: 3ms, render: 23ms)
-  Reload env: .env
- GET / 200 in 53ms (compile: 29ms, render: 25ms)
- GET / 200 in 52ms (compile: 5ms, render: 47ms)
-  Reload env: .env
-⚠ Cross origin request detected from preview-chat-582768a9-7213-476f-8e62-5c569e37a9a4.space-z.ai to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
-Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
- GET / 200 in 37ms (compile: 22ms, render: 15ms)
+✓ Ready in 667ms
+ GET / 200 in 2.5s (compile: 2.4s, render: 127ms)
+ GET / 200 in 33ms (compile: 3ms, render: 30ms)
