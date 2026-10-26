@@ -1,0 +1,13 @@
+[00:00:00.705] Server  LOG     
+[00:00:00.705] Server  LOG       We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
+[00:00:00.706] Server  LOG       The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
+
+[00:00:00.706] Server  LOG       	- include was updated to add '.next/dev/types/**/*.ts'
+[00:00:00.706] Server  LOG     
+[00:00:00.706] Server  LOG       The following mandatory changes were made to your tsconfig.json:
+
+[00:00:00.706] Server  LOG       	- jsx was set to react-jsx (next.js uses the React automatic runtime)
+[00:00:00.706] Server  LOG     
+[00:00:00.776] Server  LOG     ✓ Ready in 578ms
+[00:00:03.886] Server  LOG     ○ Compiling / ...
+[00:01:26.285] Server  LOG       Reload env: .env

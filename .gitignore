@@ -1,54 +1,27 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# secrets
+.env
 
-# dependencies
-node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+# dependencies / build output
+node_modules/
+remotion/out/
+__pycache__/
+*.pyc
+venv/
 
-# testing
-/coverage
+# heavy regenerable per-short artifacts:
+# voice/ = cached ElevenLabs TTS lines, output/ = rendered videos.
+# Both are rebuilt by the pipeline; finals are linked from the README instead.
+shorts/*/voice/
+shorts/*/output/
+ai-shorts/*/voice/
+ai-shorts/*/output/
+vox-shorts/*/voice/
+vox-shorts/*/output/
 
-# next.js
-/.next/
-/out/
+# ai-shorts working copies of generated clips — the canonical (committed) copies
+# live in media/projects/<name>/ where the composition reads them via staticFile()
+ai-shorts/*/shots/*.mp4
+ai-shorts/*/bakeoff/*.mp4
 
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
-.env*
-
-# vercel
-.vercel
-
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-local-*
-.claude
-.z-ai-config
-*.log
-dev.log
-dev.out.log
-test
-prompt
-
-server.log
-# Skills directory
-/skills/
+# local editor config
+.vscode/
