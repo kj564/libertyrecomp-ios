@@ -22,15 +22,13 @@ jobs:
         brew install freetype curl protobuf fmt spdlog openssl@3
         brew install llvm@18
         brew install molten-vk
-        brew list --versions freetype curl protobuf fmt spdlog openssl@3 llvm@18 2>&1 | head
-        echo "=== clang 18 path ==="
-        ls /opt/homebrew/opt/llvm@18/bin/clang || ls /usr/local/opt/llvm@18/bin/clang
-        /opt/homebrew/opt/llvm@18/bin/clang --version || /usr/local/opt/llvm@18/bin/clang --version
+        brew list --versions freetype curl protobuf fmt spdlog openssl@3 llvm@18 molten-vk 2>&1 | head
 
     - name: Verify Xcode + iOS SDK
       run: |
         xcode-select -p
         xcrun --sdk iphoneos --show-sdk-version
+        xcrun --sdk iphoneos --show-sdk-path
 
     - name: Clone upstream LibertyRecompAndroid
       run: git clone --depth=1 https://github.com/vaduur/LibertyRecompAndroid.git
@@ -41,74 +39,47 @@ jobs:
         python3 tools/setup_repo.py
         du -sh .
 
-    - name: Patch upstream — skip MoltenVK + GNS on iOS
+    - name: Patch upstream — skip MoltenVK + GNS + add FetchContent
       working-directory: LibertyRecompAndroid
       run: |
-        # Patch thirdparty/CMakeLists.txt using python (sed regex with parens is fragile)
         python3 - <<'PYEOF'
+        # Patch thirdparty/CMakeLists.txt
         path = "thirdparty/CMakeLists.txt"
         with open(path) as f: s = f.read()
-        # 1. MoltenVK: iOS doesn't have AppKit. Delete the add_subdirectory line entirely.
+        # Delete MoltenVK add_subdirectory line (iOS has no AppKit)
         lines = s.split('\n')
         new_lines = []
         mvk_deleted = False
         for line in lines:
             if 'add_subdirectory("${LIBERTY_RECOMP_THIRDPARTY_ROOT}/MoltenVK")' in line and not line.strip().startswith('#'):
                 mvk_deleted = True
-                continue  # skip this line
+                continue
             new_lines.append(line)
         s = '\n'.join(new_lines)
         if mvk_deleted:
             print("OK: MoltenVK add_subdirectory line deleted")
-        else:
-            print("WARN: MoltenVK add_subdirectory line not found")
-        # 2. GameNetworkingSockets skip: add iOS to existing ps4/switch/Android list
+        # Add iOS to GNS skip list
         old_gns = 'NOT (LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ps4" OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "switch" OR ANDROID)'
         new_gns = 'NOT (LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ps4" OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "switch" OR ANDROID OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ios")'
         if old_gns in s:
             s = s.replace(old_gns, new_gns)
             print("OK: GNS skip list patched (added iOS)")
-        else:
-            print("WARN: GNS pattern not found")
         with open(path, "w") as f: f.write(s)
-        # Also patch glue/rexglue-sdk-main/CMakeLists.txt:
-        # Vulkan is ON for non-Windows (line ~44). iOS is non-Windows but
-        # has no Vulkan loader. ReXGlue's Vulkan is for build-time shader
-        # compile (HLSL->SPIRV), not runtime render (Metal handles that).
-        # Skip the Vulkan validation on iOS.
-        rg_path = "glue/rexglue-sdk-main/CMakeLists.txt"
-        with open(rg_path) as f: rg = f.read()
-        # Replace the else() Vulkan ON with iOS guard
-        old_v = "else()\n    set(REXGLUE_USE_D3D12 OFF)\n    option(REXGLUE_USE_VULKAN \"Enable Vulkan graphics backend\" ON)"
-        new_v = "elseif(CMAKE_SYSTEM_NAME STREQUAL \"iOS\")\n    set(REXGLUE_USE_D3D12 OFF)\n    option(REXGLUE_USE_VULKAN \"Enable Vulkan graphics backend\" OFF)\nelse()\n    set(REXGLUE_USE_D3D12 OFF)\n    option(REXGLUE_USE_VULKAN \"Enable Vulkan graphics backend\" ON)"
-        if old_v in rg:
-            rg = rg.replace(old_v, new_v)
-            print("OK: ReXGlue Vulkan guard patched for iOS")
-        else:
-            print("WARN: ReXGlue Vulkan pattern not found")
-        # Relax FATAL_ERROR when both backends off (iOS uses Metal, not D3D12/Vulkan)
-        # Delete the FATAL_ERROR line entirely (iOS has Metal from LIBERTY_RECOMP_METAL)
-        rg_lines = rg.split('\n')
-        rg_new = []
-        fatal_deleted = False
-        for ln in rg_lines:
-            if 'At least one graphics backend must be enabled' in ln and not ln.strip().startswith('#'):
-                fatal_deleted = True
-                continue
-            rg_new.append(ln)
-        rg = '\n'.join(rg_new)
-        if fatal_deleted:
-            print("OK: ReXGlue FATAL_ERROR line deleted")
-        else:
-            print("WARN: ReXGlue FATAL_ERROR line not found")
-        with open(rg_path, "w") as f: f.write(rg)
+        # Patch root CMakeLists.txt: add FetchContent for fmt + spdlog
+        root_path = "CMakeLists.txt"
+        with open(root_path) as f: root = f.read()
+        if "FetchContent_Declare(fmt" not in root:
+            fetch = "# FetchContent for fmt + spdlog (vcpkg not available in CI)\n"
+            fetch += "include(FetchContent)\n"
+            fetch += "FetchContent_Declare(fmt GIT_REPOSITORY https://github.com/fmtlib/fmt.git GIT_TAG 11.0.2 GIT_SHALLOW TRUE)\n"
+            fetch += "FetchContent_Declare(spdlog GIT_REPOSITORY https://github.com/gabime/spdlog.git GIT_TAG v1.14.1 GIT_SHALLOW TRUE)\n"
+            fetch += "FetchContent_MakeAvailable(fmt spdlog)\n"
+            marker = "add_subdirectory(${LIBERTY_RECOMP_THIRDPARTY_ROOT})"
+            if marker in root:
+                root = root.replace(marker, fetch + "\n" + marker, 1)
+                print("OK: FetchContent fmt + spdlog added to root CMakeLists")
+        with open(root_path, "w") as f: f.write(root)
         PYEOF
-        echo "=== verify MoltenVK patched ==="
-        grep -n "MoltenVK" thirdparty/CMakeLists.txt | head -3
-        echo "=== verify GNS patched ==="
-        grep -n "GameNetworkingSockets" thirdparty/CMakeLists.txt | head -3
-        echo "=== verify ReXGlue Vulkan patched ==="
-        grep -n "REXGLUE_USE_VULKAN" glue/rexglue-sdk-main/CMakeLists.txt | head -5
 
     - name: Create dummy game payload (no real assets)
       working-directory: LibertyRecompAndroid
@@ -125,38 +96,11 @@ jobs:
           cp config.toml LibertyRecompAndroid/config.toml
         fi
 
-    - name: Patch upstream — add FetchContent for fmt + spdlog (vcpkg unavailable)
-      working-directory: LibertyRecompAndroid
-      run: |
-        # fmt + spdlog expected as vcpkg targets, but vcpkg is heavy on CI.
-        # Add FetchContent to root CMakeLists.txt to pull fmt + spdlog from source.
-        python3 - <<'PYEOF'
-        path = "CMakeLists.txt"
-        with open(path) as f: s = f.read()
-        # Insert FetchContent block before add_subdirectory(thirdparty) at line ~204
-        fetch_block = """
-# FetchContent for fmt + spdlog (vcpkg not available in CI)
-include(FetchContent)
-FetchContent_Declare(fmt GIT_REPOSITORY https://github.com/fmtlib/fmt.git GIT_TAG 11.0.2 GIT_SHALLOW TRUE)
-FetchContent_Declare(spdlog GIT_REPOSITORY https://github.com/gabime/spdlog.git GIT_TAG v1.14.1 GIT_SHALLOW TRUE)
-FetchContent_MakeAvailable(fmt spdlog)
-"""
-        marker = "add_subdirectory(${LIBERTY_RECOMP_THIRDPARTY_ROOT})"
-        if marker in s and "FetchContent_Declare(fmt" not in s:
-            s = s.replace(marker, fetch_block + "
-" + marker, 1)
-            print("OK: FetchContent fmt + spdlog added")
-        else:
-            print("WARN: marker not found or already patched")
-        with open(path, "w") as f: f.write(s)
-        PYEOF
-
-    - name: Configure (iOS Release, Metal backend, no MoltenVK, no assets)
+    - name: Configure (iOS Release, Metal backend)
       working-directory: LibertyRecompAndroid
       env:
         CC: /opt/homebrew/opt/llvm@18/bin/clang
         CXX: /opt/homebrew/opt/llvm@18/bin/clang++
-        LDFLAGS: -L/opt/homebrew/opt/llvm@18/lib
       run: |
         cmake --preset ios-release \
           -DCMAKE_C_COMPILER=/opt/homebrew/opt/llvm@18/bin/clang \
