@@ -148,7 +148,9 @@ jobs:
           -DOPENSSL_SSL_LIBRARY=/opt/homebrew/opt/openssl@3/lib/libssl.dylib \
           -DOPENSSL_INCLUDE_DIR=/opt/homebrew/opt/openssl@3/include \
           -DCURL_INCLUDE_DIR=/opt/homebrew/include \
-          -DCURL_LIBRARY=/opt/homebrew/lib/libcurl.dylib
+          -DCURL_LIBRARY=/opt/homebrew/lib/libcurl.dylib \
+          -Dfmt_DIR=/opt/homebrew/lib/cmake/fmt \
+          -Dspdlog_DIR=/opt/homebrew/lib/cmake/spdlog
 
     - name: Build .app (may take 30-60 min)
       working-directory: LibertyRecompAndroid
