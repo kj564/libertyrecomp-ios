@@ -72,6 +72,7 @@ jobs:
         import json
         with open("vcpkg.json") as f: vj = json.load(f)
         for dep in vj.get("dependencies", []):
+            if not isinstance(dep, dict): continue
             if dep.get("name") == "discord-rpc":
                 # Update platform filter to also exclude iOS
                 plat = dep.get("platform", "")
