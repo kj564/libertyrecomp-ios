@@ -1,0 +1,106 @@
+name: Build iOS IPA (unsigned)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+    timeout-minutes: 180
+
+    steps:
+    - name: Checkout port-target repo
+      uses: actions/checkout@v4
+
+    - name: Install CMake + Ninja + Python deps
+      run: |
+        brew install cmake ninja
+        python3 -m pip install --upgrade pip
+        python3 -m pip install -r https://raw.githubusercontent.com/vaduur/LibertyRecompAndroid/main/requirements.txt || true
+
+    - name: Verify Xcode + iOS SDK
+      run: |
+        xcode-select -p
+        xcrun --sdk iphoneos --show-sdk-version
+        xcrun --sdk iphoneos --show-sdk-path
+
+    - name: Clone upstream LibertyRecompAndroid
+      run: |
+        git clone --depth=1 https://github.com/vaduur/LibertyRecompAndroid.git
+        ls -la LibertyRecompAndroid/
+
+    - name: Run setup_repo.py (pull submodules)
+      working-directory: LibertyRecompAndroid
+      run: |
+        python3 tools/setup_repo.py
+        echo "=== repo size after setup ==="
+        du -sh .
+
+    - name: Copy iPhone 13 config.toml into build
+      run: |
+        if [ -f config.toml ]; then
+          mkdir -p LibertyRecompAndroid/tools/local_game_payload || true
+          cp config.toml LibertyRecompAndroid/config.toml
+          echo "=== config.toml applied ==="
+          cat config.toml | head -20
+        else
+          echo "(no config.toml in port repo, using upstream defaults)"
+        fi
+
+    - name: Configure (iOS Release preset — Metal, arm64)
+      working-directory: LibertyRecompAndroid
+      run: |
+        cmake --preset ios-release \
+          -DLIBERTY_IOS_DEVELOPMENT_TEAM="" \
+          -DLIBERTY_IOS_BUNDLE_IDENTIFIER="com.libertyrecomp.iphone13"
+
+    - name: Build .app
+      working-directory: LibertyRecompAndroid
+      run: |
+        cmake --build out/build/ios-release --config Release -j$(sysctl -n hw.ncpu) 2>&1 | tail -50
+
+    - name: Locate built .app
+      id: locate
+      run: |
+        set -e
+        APP=$(find LibertyRecompAndroid/out/build/ios-release -name "*.app" -type d | head -1)
+        echo "Found app: $APP"
+        if [ -z "$APP" ]; then
+          echo "ERROR: no .app found"
+          ls -la LibertyRecompAndroid/out/build/ios-release/ || true
+          exit 1
+        fi
+        echo "app_path=$APP" >> $GITHUB_OUTPUT
+
+    - name: Package unsigned .ipa
+      run: |
+        set -e
+        APP="${{ steps.locate.outputs.app_path }}"
+        APP_DIR=$(dirname "$APP")
+        APP_NAME=$(basename "$APP")
+        cd "$APP_DIR"
+        rm -rf Payload
+        mkdir Payload
+        cp -R "$APP_NAME" Payload/
+        zip -r -q "LibertyRecomp-unsigned.ipa" Payload
+        ls -la "LibertyRecomp-unsigned.ipa"
+
+    - name: Upload .ipa artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: LibertyRecomp-unsigned-ipa
+        path: LibertyRecompAndroid/out/build/ios-release/**/LibertyRecomp-unsigned.ipa
+        retention-days: 30
+
+    - name: Upload build log (if build failed)
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-error-log
+        path: |
+          LibertyRecompAndroid/out/build/ios-release/CMakeCache.txt
+          LibertyRecompAndroid/out/build/ios-release/CMakeFiles/CMakeOutput.log
+          LibertyRecompAndroid/out/build/ios-release/CMakeFiles/CMakeError.log
+        retention-days: 30
