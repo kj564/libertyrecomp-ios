@@ -43,8 +43,12 @@ jobs:
         # iOS is APPLE but doesn't have AppKit framework (macOS only).
         # Guard with CMAKE_SYSTEM_NAME check.
         sed -i.bak 's|^if (APPLE)$|if (APPLE AND NOT CMAKE_SYSTEM_NAME STREQUAL "iOS")|' thirdparty/CMakeLists.txt
-        echo "=== patched thirdparty/CMakeLists.txt (lines 85-95) ==="
-        sed -n '85,95p' thirdparty/CMakeLists.txt
+        # GameNetworkingSockets is skipped for ps4/switch/Android (cross-compile
+        # OpenSSL issue). iOS has the same issue (macOS OpenSSL not iOS arch).
+        # Add iOS to the skip list — single-player build doesn't need P2P.
+        sed -i.bak2 's|NOT (LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ps4" OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "switch" OR ANDROID)|NOT (LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ps4" OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "switch" OR ANDROID OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ios")|' thirdparty/CMakeLists.txt
+        echo "=== patched thirdparty/CMakeLists.txt (lines 85-105) ==="
+        sed -n '85,105p' thirdparty/CMakeLists.txt
 
     - name: Create dummy game payload (no real assets)
       working-directory: LibertyRecompAndroid
