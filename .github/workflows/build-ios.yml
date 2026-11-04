@@ -1,4 +1,4 @@
-name: Build iOS IPA (unsigned)
+name: Build iOS IPA (unsigned, no game assets)
 
 on:
   push:
@@ -35,22 +35,38 @@ jobs:
         echo "=== repo size after setup ==="
         du -sh .
 
+    - name: Create dummy game payload (CI build, no real assets)
+      working-directory: LibertyRecompAndroid
+      run: |
+        mkdir -p tools/local_game_payload
+        # Touch the required files so CMake's EMBEDDED_ASSETS check passes.
+        # These are 0-byte placeholders — the resulting .app will compile and
+        # link but will NOT run without real game assets. To get a playable
+        # build, copy your own Xbox 360 GTA IV files here instead.
+        for f in default.xex default.xexp aes_key.bin common.rpf xbox360.rpf audio.rpf; do
+          touch "tools/local_game_payload/$f"
+        done
+        mkdir -p tools/local_game_payload/common tools/local_game_payload/xbox360 \
+                 tools/local_game_payload/audio tools/local_game_payload/update
+        echo "=== dummy payload created (placeholders only) ==="
+        ls -la tools/local_game_payload/
+
     - name: Copy iPhone 13 config.toml into build
       run: |
         if [ -f config.toml ]; then
-          mkdir -p LibertyRecompAndroid/tools/local_game_payload || true
           cp config.toml LibertyRecompAndroid/config.toml
           echo "=== config.toml applied ==="
         else
-          echo "(no config.toml in port repo, using upstream defaults)"
+          echo "(no config.toml, using upstream defaults)"
         fi
 
-    - name: Configure (iOS Release preset — Metal, arm64)
+    - name: Configure (iOS Release preset — Metal, arm64, no embedded assets)
       working-directory: LibertyRecompAndroid
       run: |
         cmake --preset ios-release \
           -DLIBERTY_IOS_DEVELOPMENT_TEAM="" \
-          -DLIBERTY_IOS_BUNDLE_IDENTIFIER="com.libertyrecomp.iphone13"
+          -DLIBERTY_IOS_BUNDLE_IDENTIFIER="com.libertyrecomp.iphone13" \
+          -DLIBERTY_RECOMP_EMBEDDED_ASSETS=OFF
 
     - name: Build .app
       working-directory: LibertyRecompAndroid
@@ -66,10 +82,12 @@ jobs:
         if [ -z "$APP" ]; then
           echo "=== no .app found, listing build dir ==="
           ls -la LibertyRecompAndroid/out/build/ios-release/ 2>/dev/null || echo "(no build dir)"
-          find LibertyRecompAndroid/out -type f -name "*.app" 2>/dev/null | head -10
+          find LibertyRecompAndroid/out -type f \( -name "*.app" -o -name "*.o" \) 2>/dev/null | head -20
           exit 1
         fi
         echo "app_path=$APP" >> $GITHUB_OUTPUT
+        echo "=== app size ==="
+        du -sh "$APP"
 
     - name: Package unsigned .ipa
       run: |
