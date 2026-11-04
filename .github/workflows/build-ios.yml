@@ -136,6 +136,7 @@ jobs:
           -DCMAKE_C_COMPILER=/opt/homebrew/opt/llvm@18/bin/clang \
           -DCMAKE_CXX_COMPILER=/opt/homebrew/opt/llvm@18/bin/clang++ \
           -DREXGLUE_USE_VULKAN=OFF \
+          -DUSE_REXGLUE_RUNTIME=OFF \
           -DLIBERTY_IOS_DEVELOPMENT_TEAM="" \
           -DLIBERTY_IOS_BUNDLE_IDENTIFIER="com.libertyrecomp.iphone13" \
           -DLIBERTY_RECOMP_EMBEDDED_ASSETS=OFF \
