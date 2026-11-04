@@ -1,4 +1,4 @@
-name: Build iOS IPA (unsigned, no game assets)
+name: Build iOS IPA via vcpkg (unsigned)
 
 on:
   push:
@@ -8,27 +8,31 @@ on:
 jobs:
   build:
     runs-on: macos-14
-    timeout-minutes: 180
+    timeout-minutes: 240
 
     steps:
     - name: Checkout port-target repo
       uses: actions/checkout@v4
 
-    - name: Install CMake + Ninja + pkg-config
-      run: brew install cmake ninja pkg-config
-
-    - name: Install brew deps (incl. LLVM 18 for RexGlue)
-      run: |
-        brew install freetype curl protobuf fmt spdlog openssl@3
-        brew install llvm@18
-        brew install molten-vk
-        brew list --versions freetype curl protobuf fmt spdlog openssl@3 llvm@18 molten-vk 2>&1 | head
+    - name: Install CMake + Ninja
+      run: brew install cmake ninja
 
     - name: Verify Xcode + iOS SDK
       run: |
         xcode-select -p
         xcrun --sdk iphoneos --show-sdk-version
-        xcrun --sdk iphoneos --show-sdk-path
+
+    - name: Install vcpkg
+      run: |
+        git clone --depth=1 https://github.com/microsoft/vcpkg.git /tmp/vcpkg
+        /tmp/vcpkg/bootstrap-vcpkg.sh
+        echo "VCPKG_ROOT=/tmp/vcpkg" >> $GITHUB_ENV
+
+    - name: Copy custom arm64-ios triplet into vcpkg
+      run: |
+        cp vcpkg/triplets/arm64-ios.cmake /tmp/vcpkg/triplets/
+        echo "=== installed triplet ==="
+        cat /tmp/vcpkg/triplets/arm64-ios.cmake
 
     - name: Clone upstream LibertyRecompAndroid
       run: git clone --depth=1 https://github.com/vaduur/LibertyRecompAndroid.git
@@ -39,14 +43,13 @@ jobs:
         python3 tools/setup_repo.py
         du -sh .
 
-    - name: Patch upstream — skip MoltenVK + GNS + add FetchContent
+    - name: Patch upstream — skip MoltenVK + GNS (iOS has no AppKit)
       working-directory: LibertyRecompAndroid
       run: |
         python3 - <<'PYEOF'
-        # Patch thirdparty/CMakeLists.txt
         path = "thirdparty/CMakeLists.txt"
         with open(path) as f: s = f.read()
-        # Delete MoltenVK add_subdirectory line (iOS has no AppKit)
+        # Delete MoltenVK add_subdirectory line
         lines = s.split('\n')
         new_lines = []
         mvk_deleted = False
@@ -56,30 +59,14 @@ jobs:
                 continue
             new_lines.append(line)
         s = '\n'.join(new_lines)
-        if mvk_deleted:
-            print("OK: MoltenVK add_subdirectory line deleted")
+        if mvk_deleted: print("OK: MoltenVK skipped")
         # Add iOS to GNS skip list
         old_gns = 'NOT (LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ps4" OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "switch" OR ANDROID)'
         new_gns = 'NOT (LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ps4" OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "switch" OR ANDROID OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ios")'
         if old_gns in s:
             s = s.replace(old_gns, new_gns)
-            print("OK: GNS skip list patched (added iOS)")
+            print("OK: GNS skipped on iOS")
         with open(path, "w") as f: f.write(s)
-        # Patch root CMakeLists.txt: add FetchContent for fmt + spdlog
-        root_path = "CMakeLists.txt"
-        with open(root_path) as f: root = f.read()
-        if "FetchContent_Declare(fmt" not in root:
-            fetch = "# FetchContent for fmt + spdlog (vcpkg not available in CI)\n"
-            fetch += "include(FetchContent)\n"
-            fetch += "FetchContent_Declare(fmt GIT_REPOSITORY https://github.com/fmtlib/fmt.git GIT_TAG 11.0.2 GIT_SHALLOW TRUE)\n"
-            fetch += "FetchContent_Declare(spdlog GIT_REPOSITORY https://github.com/gabime/spdlog.git GIT_TAG v1.14.1 GIT_SHALLOW TRUE)\n"
-            fetch += "FetchContent_Declare(SDL3 GIT_REPOSITORY https://github.com/libsdl-org/SDL.git GIT_TAG release-3.2.10 GIT_SHALLOW TRUE)\n"
-            fetch += "FetchContent_MakeAvailable(fmt spdlog SDL3)\n"
-            marker = "add_subdirectory(${LIBERTY_RECOMP_THIRDPARTY_ROOT})"
-            if marker in root:
-                root = root.replace(marker, fetch + "\n" + marker, 1)
-                print("OK: FetchContent fmt + spdlog added to root CMakeLists")
-        with open(root_path, "w") as f: f.write(root)
         PYEOF
 
     - name: Create dummy game payload (no real assets)
@@ -92,39 +79,26 @@ jobs:
         mkdir -p tools/local_game_payload/{common,xbox360,audio,update}
 
     - name: Copy iPhone 13 config.toml
-      run: |
-        if [ -f config.toml ]; then
-          cp config.toml LibertyRecompAndroid/config.toml
-        fi
+      run: cp config.toml LibertyRecompAndroid/config.toml || true
 
-    - name: Configure (iOS Release, Metal backend)
+    - name: Configure (iOS Release, Metal, vcpkg arm64-ios triplet)
       working-directory: LibertyRecompAndroid
-      env:
-        CC: /opt/homebrew/opt/llvm@18/bin/clang
-        CXX: /opt/homebrew/opt/llvm@18/bin/clang++
       run: |
         cmake --preset ios-release \
-          -DCMAKE_C_COMPILER=/opt/homebrew/opt/llvm@18/bin/clang \
-          -DCMAKE_CXX_COMPILER=/opt/homebrew/opt/llvm@18/bin/clang++ \
-          -DREXGLUE_USE_VULKAN=OFF \
-          -DUSE_REXGLUE_RUNTIME=OFF \
           -DLIBERTY_IOS_DEVELOPMENT_TEAM="" \
           -DLIBERTY_IOS_BUNDLE_IDENTIFIER="com.libertyrecomp.iphone13" \
           -DLIBERTY_RECOMP_EMBEDDED_ASSETS=OFF \
-          -DFREETYPE_INCLUDE_DIR_freetype2=/opt/homebrew/include/freetype2 \
-          -DFREETYPE_INCLUDE_DIR_ft2build=/opt/homebrew/include/freetype2 \
-          -DFREETYPE_LIBRARY=/opt/homebrew/lib/libfreetype.dylib \
-          -DOPENSSL_ROOT_DIR=/opt/homebrew/opt/openssl@3 \
-          -DOPENSSL_CRYPTO_LIBRARY=/opt/homebrew/opt/openssl@3/lib/libcrypto.dylib \
-          -DOPENSSL_SSL_LIBRARY=/opt/homebrew/opt/openssl@3/lib/libssl.dylib \
-          -DOPENSSL_INCLUDE_DIR=/opt/homebrew/opt/openssl@3/include \
-          -DCURL_INCLUDE_DIR=/opt/homebrew/include \
-          -DCURL_LIBRARY=/opt/homebrew/lib/libcurl.dylib
+          -DUSE_REXGLUE_RUNTIME=OFF \
+          -DCMAKE_TOOLCHAIN_FILE=/tmp/vcpkg/scripts/buildsystems/vcpkg.cmake \
+          -DVCPKG_TARGET_TRIPLET=arm64-ios \
+          -DVCPKG_HOST_TRIPLET=arm64-osx \
+          -DVCPKG_OVERLAY_TRIPLETS=/tmp/vcpkg/triplets \
+          -GXcode
 
-    - name: Build .app (may take 30-60 min)
+    - name: Build .app (vcpkg builds deps from source, may take 60-90 min)
       working-directory: LibertyRecompAndroid
       run: |
-        cmake --build out/build/ios-release --config Release -j$(sysctl -n hw.ncpu) 2>&1 | tail -150
+        cmake --build out/build/ios-release --config Release -j$(sysctl -n hw.ncpu) 2>&1 | tail -200
 
     - name: Locate built .app
       id: locate
@@ -133,9 +107,8 @@ jobs:
         APP=$(find LibertyRecompAndroid/out/build/ios-release -name "*.app" -type d 2>/dev/null | head -1)
         echo "Found app: $APP"
         if [ -z "$APP" ]; then
-          echo "=== no .app found, build dir listing ==="
+          echo "=== no .app found ==="
           ls -la LibertyRecompAndroid/out/build/ios-release/ 2>/dev/null
-          find LibertyRecompAndroid/out -type f \( -name "*.o" -o -name "Liberty*" \) 2>/dev/null | head -20
           exit 1
         fi
         echo "app_path=$APP" >> $GITHUB_OUTPUT
