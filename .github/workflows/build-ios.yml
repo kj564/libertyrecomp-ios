@@ -40,19 +40,36 @@ jobs:
         python3 tools/setup_repo.py
         du -sh .
 
-    - name: Patch upstream — skip MoltenVK on iOS (AppKit missing)
+    - name: Patch upstream — skip MoltenVK + GNS on iOS
       working-directory: LibertyRecompAndroid
       run: |
-        # thirdparty/CMakeLists.txt adds MoltenVK unconditionally for APPLE.
-        # iOS is APPLE but doesn't have AppKit framework (macOS only).
-        # Guard with CMAKE_SYSTEM_NAME check.
-        sed -i.bak 's|^if (APPLE)$|if (APPLE AND NOT CMAKE_SYSTEM_NAME STREQUAL "iOS")|' thirdparty/CMakeLists.txt
-        # GameNetworkingSockets is skipped for ps4/switch/Android (cross-compile
-        # OpenSSL issue). iOS has the same issue (macOS OpenSSL not iOS arch).
-        # Add iOS to the skip list — single-player build doesn't need P2P.
-        sed -i.bak2 's|NOT (LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ps4" OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "switch" OR ANDROID)|NOT (LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ps4" OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "switch" OR ANDROID OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ios")|' thirdparty/CMakeLists.txt
-        echo "=== patched thirdparty/CMakeLists.txt (lines 85-105) ==="
-        sed -n '85,105p' thirdparty/CMakeLists.txt
+        # Patch thirdparty/CMakeLists.txt using python (sed regex with parens is fragile)
+        python3 - <<'PYEOF'
+        path = "thirdparty/CMakeLists.txt"
+        with open(path) as f: s = f.read()
+        # 1. MoltenVK guard: 'if (APPLE)' -> 'if (APPLE AND NOT iOS)'
+        #    iOS is APPLE but doesn't have AppKit framework (macOS only).
+        old_mvk = 'if (APPLE)\n    add_subdirectory("${LIBERTY_RECOMP_THIRDPARTY_ROOT}/MoltenVK")'
+        new_mvk = 'if (APPLE AND NOT CMAKE_SYSTEM_NAME STREQUAL "iOS")\n    add_subdirectory("${LIBERTY_RECOMP_THIRDPARTY_ROOT}/MoltenVK")'
+        if old_mvk in s:
+            s = s.replace(old_mvk, new_mvk)
+            print("OK: MoltenVK guard patched")
+        else:
+            print("WARN: MoltenVK pattern not found")
+        # 2. GameNetworkingSockets skip: add iOS to existing ps4/switch/Android list
+        old_gns = 'NOT (LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ps4" OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "switch" OR ANDROID)'
+        new_gns = 'NOT (LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ps4" OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "switch" OR ANDROID OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ios")'
+        if old_gns in s:
+            s = s.replace(old_gns, new_gns)
+            print("OK: GNS skip list patched (added iOS)")
+        else:
+            print("WARN: GNS pattern not found")
+        with open(path, "w") as f: f.write(s)
+        PYEOF
+        echo "=== verify MoltenVK patched ==="
+        grep -n "MoltenVK" thirdparty/CMakeLists.txt | head -3
+        echo "=== verify GNS patched ==="
+        grep -n "GameNetworkingSockets" thirdparty/CMakeLists.txt | head -3
 
     - name: Create dummy game payload (no real assets)
       working-directory: LibertyRecompAndroid
