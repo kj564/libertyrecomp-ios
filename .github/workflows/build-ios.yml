@@ -85,11 +85,21 @@ jobs:
             print("OK: ReXGlue Vulkan guard patched for iOS")
         else:
             print("WARN: ReXGlue Vulkan pattern not found")
-        # Also relax the FATAL_ERROR when both backends off (iOS uses Metal)
-        rg = rg.replace(
-            'if(NOT REXGLUE_USE_D3D12 AND NOT REXGLUE_USE_VULKAN)\n    message(FATAL_ERROR "At least one graphics backend must be enabled (REXGLUE_USE_D3D12 or REXGLUE_USE_VULKAN)")',
-            'if(NOT REXGLUE_USE_D3D12 AND NOT REXGLUE_USE_VULKAN AND NOT CMAKE_SYSTEM_NAME STREQUAL "iOS")\n    message(FATAL_ERROR "At least one graphics backend must be enabled (REXGLUE_USE_D3D12 or REXGLUE_USE_VULKAN)")'
-        )
+        # Relax FATAL_ERROR when both backends off (iOS uses Metal, not D3D12/Vulkan)
+        # Delete the FATAL_ERROR line entirely (iOS has Metal from LIBERTY_RECOMP_METAL)
+        rg_lines = rg.split('\n')
+        rg_new = []
+        fatal_deleted = False
+        for ln in rg_lines:
+            if 'At least one graphics backend must be enabled' in ln and not ln.strip().startswith('#'):
+                fatal_deleted = True
+                continue
+            rg_new.append(ln)
+        rg = '\n'.join(rg_new)
+        if fatal_deleted:
+            print("OK: ReXGlue FATAL_ERROR line deleted")
+        else:
+            print("WARN: ReXGlue FATAL_ERROR line not found")
         with open(rg_path, "w") as f: f.write(rg)
         PYEOF
         echo "=== verify MoltenVK patched ==="
@@ -124,6 +134,7 @@ jobs:
         cmake --preset ios-release \
           -DCMAKE_C_COMPILER=/opt/homebrew/opt/llvm@18/bin/clang \
           -DCMAKE_CXX_COMPILER=/opt/homebrew/opt/llvm@18/bin/clang++ \
+          -DREXGLUE_USE_VULKAN=OFF \
           -DLIBERTY_IOS_DEVELOPMENT_TEAM="" \
           -DLIBERTY_IOS_BUNDLE_IDENTIFIER="com.libertyrecomp.iphone13" \
           -DLIBERTY_RECOMP_EMBEDDED_ASSETS=OFF \
