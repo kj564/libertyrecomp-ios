@@ -21,6 +21,7 @@ jobs:
       run: |
         brew install freetype curl protobuf fmt spdlog openssl@3
         brew install llvm@18
+        brew install molten-vk
         brew list --versions freetype curl protobuf fmt spdlog openssl@3 llvm@18 2>&1 | head
         echo "=== clang 18 path ==="
         ls /opt/homebrew/opt/llvm@18/bin/clang || ls /usr/local/opt/llvm@18/bin/clang
