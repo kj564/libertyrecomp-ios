@@ -1,0 +1,128 @@
+name: Build iOS IPA (unsigned, no game assets)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+    timeout-minutes: 180
+
+    steps:
+    - name: Checkout port-target repo
+      uses: actions/checkout@v4
+
+    - name: Install CMake + Ninja + pkg-config
+      run: brew install cmake ninja pkg-config
+
+    - name: Install brew deps (freetype, curl, protobuf, fmt, spdlog, openssl)
+      run: |
+        brew install freetype curl protobuf fmt spdlog openssl@3
+        brew list --versions freetype curl protobuf fmt spdlog openssl@3 2>&1 | head
+
+    - name: Verify Xcode + iOS SDK
+      run: |
+        xcode-select -p
+        xcrun --sdk iphoneos --show-sdk-version
+
+    - name: Clone upstream LibertyRecompAndroid
+      run: git clone --depth=1 https://github.com/vaduur/LibertyRecompAndroid.git
+
+    - name: Run setup_repo.py (pull submodules)
+      working-directory: LibertyRecompAndroid
+      run: |
+        python3 tools/setup_repo.py
+        du -sh .
+
+    - name: Patch upstream — skip MoltenVK on iOS (AppKit missing)
+      working-directory: LibertyRecompAndroid
+      run: |
+        # thirdparty/CMakeLists.txt adds MoltenVK unconditionally for APPLE.
+        # iOS is APPLE but doesn't have AppKit framework (macOS only).
+        # Guard with CMAKE_SYSTEM_NAME check.
+        sed -i.bak 's|^if (APPLE)$|if (APPLE AND NOT CMAKE_SYSTEM_NAME STREQUAL "iOS")|' thirdparty/CMakeLists.txt
+        echo "=== patched thirdparty/CMakeLists.txt (lines 85-95) ==="
+        sed -n '85,95p' thirdparty/CMakeLists.txt
+
+    - name: Create dummy game payload (no real assets)
+      working-directory: LibertyRecompAndroid
+      run: |
+        mkdir -p tools/local_game_payload
+        for f in default.xex default.xexp aes_key.bin common.rpf xbox360.rpf audio.rpf; do
+          touch "tools/local_game_payload/$f"
+        done
+        mkdir -p tools/local_game_payload/{common,xbox360,audio,update}
+
+    - name: Copy iPhone 13 config.toml
+      run: |
+        if [ -f config.toml ]; then
+          cp config.toml LibertyRecompAndroid/config.toml
+        fi
+
+    - name: Configure (iOS Release, Metal backend, no MoltenVK, no assets)
+      working-directory: LibertyRecompAndroid
+      env:
+        OPENSSL_ROOT_DIR: /opt/homebrew/opt/openssl@3
+      run: |
+        cmake --preset ios-release \
+          -DLIBERTY_IOS_DEVELOPMENT_TEAM="" \
+          -DLIBERTY_IOS_BUNDLE_IDENTIFIER="com.libertyrecomp.iphone13" \
+          -DLIBERTY_RECOMP_EMBEDDED_ASSETS=OFF \
+          -DFREETYPE_INCLUDE_DIR_freetype2=/opt/homebrew/include/freetype2 \
+          -DFREETYPE_INCLUDE_DIR_ft2build=/opt/homebrew/include/freetype2 \
+          -DFREETYPE_LIBRARY=/opt/homebrew/lib/libfreetype.dylib \
+          -DOPENSSL_ROOT_DIR=/opt/homebrew/opt/openssl@3
+
+    - name: Build .app (may take 30-60 min)
+      working-directory: LibertyRecompAndroid
+      run: |
+        cmake --build out/build/ios-release --config Release -j$(sysctl -n hw.ncpu) 2>&1 | tail -150
+
+    - name: Locate built .app
+      id: locate
+      run: |
+        set -e
+        APP=$(find LibertyRecompAndroid/out/build/ios-release -name "*.app" -type d 2>/dev/null | head -1)
+        echo "Found app: $APP"
+        if [ -z "$APP" ]; then
+          echo "=== no .app found, build dir listing ==="
+          ls -la LibertyRecompAndroid/out/build/ios-release/ 2>/dev/null
+          find LibertyRecompAndroid/out -type f \( -name "*.o" -o -name "Liberty*" \) 2>/dev/null | head -20
+          exit 1
+        fi
+        echo "app_path=$APP" >> $GITHUB_OUTPUT
+        du -sh "$APP"
+
+    - name: Package unsigned .ipa
+      run: |
+        set -e
+        APP="${{ steps.locate.outputs.app_path }}"
+        APP_DIR=$(dirname "$APP")
+        APP_NAME=$(basename "$APP")
+        cd "$APP_DIR"
+        rm -rf Payload
+        mkdir Payload
+        cp -R "$APP_NAME" Payload/
+        zip -r -q "LibertyRecomp-unsigned.ipa" Payload
+        ls -la "LibertyRecomp-unsigned.ipa"
+
+    - name: Upload .ipa artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: LibertyRecomp-unsigned-ipa
+        path: LibertyRecompAndroid/out/build/ios-release/**/LibertyRecomp-unsigned.ipa
+        retention-days: 30
+
+    - name: Upload build logs (on failure)
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-error-logs
+        path: |
+          LibertyRecompAndroid/out/build/ios-release/CMakeCache.txt
+          LibertyRecompAndroid/out/build/ios-release/CMakeFiles/CMakeOutput.log
+          LibertyRecompAndroid/out/build/ios-release/CMakeFiles/CMakeError.log
+        retention-days: 30
+        if-no-files-found: ignore
