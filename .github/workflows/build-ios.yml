@@ -43,10 +43,11 @@ jobs:
         python3 tools/setup_repo.py
         du -sh .
 
-    - name: Patch upstream — skip MoltenVK + GNS (iOS has no AppKit)
+    - name: Patch upstream — skip MoltenVK + GNS + discord-rpc (iOS has no AppKit)
       working-directory: LibertyRecompAndroid
       run: |
         python3 - <<'PYEOF'
+        # Patch thirdparty/CMakeLists.txt
         path = "thirdparty/CMakeLists.txt"
         with open(path) as f: s = f.read()
         # Delete MoltenVK add_subdirectory line
@@ -67,6 +68,17 @@ jobs:
             s = s.replace(old_gns, new_gns)
             print("OK: GNS skipped on iOS")
         with open(path, "w") as f: f.write(s)
+        # Patch vcpkg.json: discord-rpc uses AppKit (macOS only). Exclude iOS.
+        import json
+        with open("vcpkg.json") as f: vj = json.load(f)
+        for dep in vj.get("dependencies", []):
+            if dep.get("name") == "discord-rpc":
+                # Update platform filter to also exclude iOS
+                plat = dep.get("platform", "")
+                if "ios" not in plat:
+                    dep["platform"] = "!ps4 & !ps5 & !ios"
+                    print("OK: discord-rpc excluded on iOS")
+        with open("vcpkg.json", "w") as f: json.dump(vj, f, indent=4)
         PYEOF
 
     - name: Create dummy game payload (no real assets)
