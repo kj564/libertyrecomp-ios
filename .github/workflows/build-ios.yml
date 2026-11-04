@@ -14,8 +14,17 @@ jobs:
     - name: Checkout port-target repo
       uses: actions/checkout@v4
 
-    - name: Install CMake + Ninja
-      run: brew install cmake ninja
+    - name: Install CMake + Ninja + pkg-config
+      run: brew install cmake ninja pkg-config
+
+    - name: Install vcpkg dependencies via brew (freetype, curl, protobuf, etc)
+      run: |
+        # vcpkg on macOS runner is slow. Use brew for system libs that are iOS-portable.
+        # These are build-time host deps; cross-compile to iOS via the toolchain.
+        brew install freetype curl protobuf fmt spdlog
+        brew install openssl@3
+        echo "=== brew deps installed ==="
+        brew list --versions freetype curl protobuf fmt spdlog openssl@3 2>&1 | head
 
     - name: Verify Xcode + iOS SDK
       run: |
@@ -39,39 +48,40 @@ jobs:
       working-directory: LibertyRecompAndroid
       run: |
         mkdir -p tools/local_game_payload
-        # Touch the required files so CMake's EMBEDDED_ASSETS check passes.
-        # These are 0-byte placeholders — the resulting .app will compile and
-        # link but will NOT run without real game assets. To get a playable
-        # build, copy your own Xbox 360 GTA IV files here instead.
         for f in default.xex default.xexp aes_key.bin common.rpf xbox360.rpf audio.rpf; do
           touch "tools/local_game_payload/$f"
         done
         mkdir -p tools/local_game_payload/common tools/local_game_payload/xbox360 \
                  tools/local_game_payload/audio tools/local_game_payload/update
-        echo "=== dummy payload created (placeholders only) ==="
-        ls -la tools/local_game_payload/
+        echo "=== dummy payload created ==="
 
-    - name: Copy iPhone 13 config.toml into build
+    - name: Copy iPhone 13 config.toml
       run: |
         if [ -f config.toml ]; then
           cp config.toml LibertyRecompAndroid/config.toml
-          echo "=== config.toml applied ==="
-        else
-          echo "(no config.toml, using upstream defaults)"
         fi
 
-    - name: Configure (iOS Release preset — Metal, arm64, no embedded assets)
+    - name: Configure (iOS Release, no embedded assets, host brew deps)
       working-directory: LibertyRecompAndroid
+      env:
+        FREETYPE_DIR: /opt/homebrew
+        OPENSSL_ROOT_DIR: /opt/homebrew/opt/openssl@3
       run: |
         cmake --preset ios-release \
           -DLIBERTY_IOS_DEVELOPMENT_TEAM="" \
           -DLIBERTY_IOS_BUNDLE_IDENTIFIER="com.libertyrecomp.iphone13" \
-          -DLIBERTY_RECOMP_EMBEDDED_ASSETS=OFF
+          -DLIBERTY_RECOMP_EMBEDDED_ASSETS=OFF \
+          -DFREETYPE_INCLUDE_DIR_freetype2=/opt/homebrew/include/freetype2 \
+          -DFREETYPE_INCLUDE_DIR_ft2build=/opt/homebrew/include/freetype2 \
+          -DFREETYPE_LIBRARY=/opt/homebrew/lib/libfreetype.dylib \
+          -DOPENSSL_ROOT_DIR=/opt/homebrew/opt/openssl@3 \
+          -DCMAKE_FIND_ROOT_PATH=/opt/homebrew \
+          -DCMAKE_FIND_ROOT_PATH_MODE_PACKAGE=BOTH
 
     - name: Build .app
       working-directory: LibertyRecompAndroid
       run: |
-        cmake --build out/build/ios-release --config Release -j$(sysctl -n hw.ncpu) 2>&1 | tail -100
+        cmake --build out/build/ios-release --config Release -j$(sysctl -n hw.ncpu) 2>&1 | tail -150
 
     - name: Locate built .app
       id: locate
@@ -82,11 +92,9 @@ jobs:
         if [ -z "$APP" ]; then
           echo "=== no .app found, listing build dir ==="
           ls -la LibertyRecompAndroid/out/build/ios-release/ 2>/dev/null || echo "(no build dir)"
-          find LibertyRecompAndroid/out -type f \( -name "*.app" -o -name "*.o" \) 2>/dev/null | head -20
           exit 1
         fi
         echo "app_path=$APP" >> $GITHUB_OUTPUT
-        echo "=== app size ==="
         du -sh "$APP"
 
     - name: Package unsigned .ipa
@@ -101,7 +109,6 @@ jobs:
         cp -R "$APP_NAME" Payload/
         zip -r -q "LibertyRecomp-unsigned.ipa" Payload
         ls -la "LibertyRecomp-unsigned.ipa"
-        echo "=== ipa location: $APP_DIR/LibertyRecomp-unsigned.ipa ==="
 
     - name: Upload .ipa artifact
       uses: actions/upload-artifact@v4
@@ -110,7 +117,7 @@ jobs:
         path: LibertyRecompAndroid/out/build/ios-release/**/LibertyRecomp-unsigned.ipa
         retention-days: 30
 
-    - name: Upload build log (if build failed)
+    - name: Upload build logs (on failure)
       if: failure()
       uses: actions/upload-artifact@v4
       with:
