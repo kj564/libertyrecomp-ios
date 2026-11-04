@@ -17,43 +17,43 @@ jobs:
     - name: Install CMake + Ninja + pkg-config
       run: brew install cmake ninja pkg-config
 
-    - name: Install vcpkg dependencies via brew (freetype, curl, protobuf, etc)
+    - name: Install brew deps (freetype, curl, protobuf, fmt, spdlog, openssl)
       run: |
-        # vcpkg on macOS runner is slow. Use brew for system libs that are iOS-portable.
-        # These are build-time host deps; cross-compile to iOS via the toolchain.
-        brew install freetype curl protobuf fmt spdlog
-        brew install openssl@3
-        echo "=== brew deps installed ==="
+        brew install freetype curl protobuf fmt spdlog openssl@3
         brew list --versions freetype curl protobuf fmt spdlog openssl@3 2>&1 | head
 
     - name: Verify Xcode + iOS SDK
       run: |
         xcode-select -p
         xcrun --sdk iphoneos --show-sdk-version
-        xcrun --sdk iphoneos --show-sdk-path
 
     - name: Clone upstream LibertyRecompAndroid
-      run: |
-        git clone --depth=1 https://github.com/vaduur/LibertyRecompAndroid.git
-        ls -la LibertyRecompAndroid/
+      run: git clone --depth=1 https://github.com/vaduur/LibertyRecompAndroid.git
 
     - name: Run setup_repo.py (pull submodules)
       working-directory: LibertyRecompAndroid
       run: |
         python3 tools/setup_repo.py
-        echo "=== repo size after setup ==="
         du -sh .
 
-    - name: Create dummy game payload (CI build, no real assets)
+    - name: Patch upstream — skip MoltenVK on iOS (AppKit missing)
+      working-directory: LibertyRecompAndroid
+      run: |
+        # thirdparty/CMakeLists.txt adds MoltenVK unconditionally for APPLE.
+        # iOS is APPLE but doesn't have AppKit framework (macOS only).
+        # Guard with CMAKE_SYSTEM_NAME check.
+        sed -i.bak 's|^if (APPLE)$|if (APPLE AND NOT CMAKE_SYSTEM_NAME STREQUAL "iOS")|' thirdparty/CMakeLists.txt
+        echo "=== patched thirdparty/CMakeLists.txt (lines 85-95) ==="
+        sed -n '85,95p' thirdparty/CMakeLists.txt
+
+    - name: Create dummy game payload (no real assets)
       working-directory: LibertyRecompAndroid
       run: |
         mkdir -p tools/local_game_payload
         for f in default.xex default.xexp aes_key.bin common.rpf xbox360.rpf audio.rpf; do
           touch "tools/local_game_payload/$f"
         done
-        mkdir -p tools/local_game_payload/common tools/local_game_payload/xbox360 \
-                 tools/local_game_payload/audio tools/local_game_payload/update
-        echo "=== dummy payload created ==="
+        mkdir -p tools/local_game_payload/{common,xbox360,audio,update}
 
     - name: Copy iPhone 13 config.toml
       run: |
@@ -61,10 +61,9 @@ jobs:
           cp config.toml LibertyRecompAndroid/config.toml
         fi
 
-    - name: Configure (iOS Release, no embedded assets, host brew deps)
+    - name: Configure (iOS Release, Metal backend, no MoltenVK, no assets)
       working-directory: LibertyRecompAndroid
       env:
-        FREETYPE_DIR: /opt/homebrew
         OPENSSL_ROOT_DIR: /opt/homebrew/opt/openssl@3
       run: |
         cmake --preset ios-release \
@@ -74,11 +73,9 @@ jobs:
           -DFREETYPE_INCLUDE_DIR_freetype2=/opt/homebrew/include/freetype2 \
           -DFREETYPE_INCLUDE_DIR_ft2build=/opt/homebrew/include/freetype2 \
           -DFREETYPE_LIBRARY=/opt/homebrew/lib/libfreetype.dylib \
-          -DOPENSSL_ROOT_DIR=/opt/homebrew/opt/openssl@3 \
-          -DCMAKE_FIND_ROOT_PATH=/opt/homebrew \
-          -DCMAKE_FIND_ROOT_PATH_MODE_PACKAGE=BOTH
+          -DOPENSSL_ROOT_DIR=/opt/homebrew/opt/openssl@3
 
-    - name: Build .app
+    - name: Build .app (may take 30-60 min)
       working-directory: LibertyRecompAndroid
       run: |
         cmake --build out/build/ios-release --config Release -j$(sysctl -n hw.ncpu) 2>&1 | tail -150
@@ -90,8 +87,9 @@ jobs:
         APP=$(find LibertyRecompAndroid/out/build/ios-release -name "*.app" -type d 2>/dev/null | head -1)
         echo "Found app: $APP"
         if [ -z "$APP" ]; then
-          echo "=== no .app found, listing build dir ==="
-          ls -la LibertyRecompAndroid/out/build/ios-release/ 2>/dev/null || echo "(no build dir)"
+          echo "=== no .app found, build dir listing ==="
+          ls -la LibertyRecompAndroid/out/build/ios-release/ 2>/dev/null
+          find LibertyRecompAndroid/out -type f \( -name "*.o" -o -name "Liberty*" \) 2>/dev/null | head -20
           exit 1
         fi
         echo "app_path=$APP" >> $GITHUB_OUTPUT
