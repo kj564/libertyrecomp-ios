@@ -17,10 +17,14 @@ jobs:
     - name: Install CMake + Ninja + pkg-config
       run: brew install cmake ninja pkg-config
 
-    - name: Install brew deps (freetype, curl, protobuf, fmt, spdlog, openssl)
+    - name: Install brew deps (incl. LLVM 18 for RexGlue)
       run: |
         brew install freetype curl protobuf fmt spdlog openssl@3
-        brew list --versions freetype curl protobuf fmt spdlog openssl@3 2>&1 | head
+        brew install llvm@18
+        brew list --versions freetype curl protobuf fmt spdlog openssl@3 llvm@18 2>&1 | head
+        echo "=== clang 18 path ==="
+        ls /opt/homebrew/opt/llvm@18/bin/clang || ls /usr/local/opt/llvm@18/bin/clang
+        /opt/homebrew/opt/llvm@18/bin/clang --version || /usr/local/opt/llvm@18/bin/clang --version
 
     - name: Verify Xcode + iOS SDK
       run: |
@@ -67,8 +71,14 @@ jobs:
 
     - name: Configure (iOS Release, Metal backend, no MoltenVK, no assets)
       working-directory: LibertyRecompAndroid
+      env:
+        CC: /opt/homebrew/opt/llvm@18/bin/clang
+        CXX: /opt/homebrew/opt/llvm@18/bin/clang++
+        LDFLAGS: -L/opt/homebrew/opt/llvm@18/lib
       run: |
         cmake --preset ios-release \
+          -DCMAKE_C_COMPILER=/opt/homebrew/opt/llvm@18/bin/clang \
+          -DCMAKE_CXX_COMPILER=/opt/homebrew/opt/llvm@18/bin/clang++ \
           -DLIBERTY_IOS_DEVELOPMENT_TEAM="" \
           -DLIBERTY_IOS_BUNDLE_IDENTIFIER="com.libertyrecomp.iphone13" \
           -DLIBERTY_RECOMP_EMBEDDED_ASSETS=OFF \
