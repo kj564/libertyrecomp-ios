@@ -125,6 +125,32 @@ jobs:
           cp config.toml LibertyRecompAndroid/config.toml
         fi
 
+    - name: Patch upstream — add FetchContent for fmt + spdlog (vcpkg unavailable)
+      working-directory: LibertyRecompAndroid
+      run: |
+        # fmt + spdlog expected as vcpkg targets, but vcpkg is heavy on CI.
+        # Add FetchContent to root CMakeLists.txt to pull fmt + spdlog from source.
+        python3 - <<'PYEOF'
+        path = "CMakeLists.txt"
+        with open(path) as f: s = f.read()
+        # Insert FetchContent block before add_subdirectory(thirdparty) at line ~204
+        fetch_block = """
+# FetchContent for fmt + spdlog (vcpkg not available in CI)
+include(FetchContent)
+FetchContent_Declare(fmt GIT_REPOSITORY https://github.com/fmtlib/fmt.git GIT_TAG 11.0.2 GIT_SHALLOW TRUE)
+FetchContent_Declare(spdlog GIT_REPOSITORY https://github.com/gabime/spdlog.git GIT_TAG v1.14.1 GIT_SHALLOW TRUE)
+FetchContent_MakeAvailable(fmt spdlog)
+"""
+        marker = "add_subdirectory(${LIBERTY_RECOMP_THIRDPARTY_ROOT})"
+        if marker in s and "FetchContent_Declare(fmt" not in s:
+            s = s.replace(marker, fetch_block + "
+" + marker, 1)
+            print("OK: FetchContent fmt + spdlog added")
+        else:
+            print("WARN: marker not found or already patched")
+        with open(path, "w") as f: f.write(s)
+        PYEOF
+
     - name: Configure (iOS Release, Metal backend, no MoltenVK, no assets)
       working-directory: LibertyRecompAndroid
       env:
@@ -148,9 +174,7 @@ jobs:
           -DOPENSSL_SSL_LIBRARY=/opt/homebrew/opt/openssl@3/lib/libssl.dylib \
           -DOPENSSL_INCLUDE_DIR=/opt/homebrew/opt/openssl@3/include \
           -DCURL_INCLUDE_DIR=/opt/homebrew/include \
-          -DCURL_LIBRARY=/opt/homebrew/lib/libcurl.dylib \
-          -Dfmt_DIR=/opt/homebrew/lib/cmake/fmt \
-          -Dspdlog_DIR=/opt/homebrew/lib/cmake/spdlog
+          -DCURL_LIBRARY=/opt/homebrew/lib/libcurl.dylib
 
     - name: Build .app (may take 30-60 min)
       working-directory: LibertyRecompAndroid
