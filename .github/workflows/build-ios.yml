@@ -130,7 +130,7 @@ jobs:
           -DVCPKG_TARGET_TRIPLET=arm64-ios \
           -DVCPKG_HOST_TRIPLET=arm64-osx \
           -DVCPKG_OVERLAY_TRIPLETS=/tmp/vcpkg/triplets \
-          -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${sourceDir}/toolchains/ios.cmake \
+          -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=toolchains/ios.cmake \
           -GXcode
 
     - name: Build .app (vcpkg builds deps from source, may take 60-90 min)
