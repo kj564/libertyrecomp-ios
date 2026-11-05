@@ -117,16 +117,18 @@ jobs:
                 root = root.replace(marker, fp_block + "\n" + marker, 1)
                 print("OK: find_package calls added for vcpkg deps")
         with open(root_path, "w") as f: f.write(root)
-        # Patch LibertyRecomp/CMakeLists.txt: add iOS to NFD skip condition
-        # (upstream already skips ps4/switch/Android — add iOS so nfd::nfd not linked)
+        # Patch LibertyRecomp/CMakeLists.txt: comment out the nfd::nfd target_link_libraries line
+        # The if-block condition is multi-line and hard to match. Instead, replace
+        # the target_link_libraries line itself with a no-op comment.
         lr_path = "LibertyRecomp/CMakeLists.txt"
         with open(lr_path) as f: lr = f.read()
-        # The NFD if-block condition: add iOS to the skip list
-        nfd_old = "ANDROID))"
-        nfd_new = "ANDROID OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL \"ios\"))"
-        if nfd_old in lr and "ios" not in lr.split("nfd")[0][-200:]:
-            lr = lr.replace(nfd_old, nfd_new, 1)  # only first occurrence (NFD block)
-            print("OK: iOS added to NFD skip condition")
+        old_link = "    target_link_libraries(LibertyRecomp PRIVATE nfd::nfd)"
+        new_link = "    # target_link_libraries(LibertyRecomp PRIVATE nfd::nfd)  # SKIPPED on iOS"
+        if old_link in lr:
+            lr = lr.replace(old_link, new_link)
+            print("OK: nfd::nfd target_link_libraries line commented out")
+        else:
+            print("WARN: nfd::nfd link line not found")
         with open(lr_path, "w") as f: f.write(lr)
         PYEOF
 
