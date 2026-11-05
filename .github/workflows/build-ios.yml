@@ -82,6 +82,10 @@ jobs:
                 if "ios" not in plat:
                     dep["platform"] = "!ps4 & !ps5 & !ios"
                     print("OK: discord-rpc excluded on iOS")
+        # Also add openssl dep (find_package(OpenSSL) in root CMakeLists)
+        if not any(d.get("name") if isinstance(d,dict) else d == "openssl" for d in vj.get("dependencies",[])):
+            vj["dependencies"].append("openssl")
+            print("OK: openssl added to vcpkg deps")
         with open("vcpkg.json", "w") as f: json.dump(vj, f, indent=4)
         # Add find_package calls to root CMakeLists.txt for vcpkg deps
         # (LibertyRecomp links fmt::fmt, spdlog::spdlog, SDL3::SDL3-static, etc.
