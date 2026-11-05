@@ -100,7 +100,7 @@ jobs:
             fp_block += "find_package(freetype CONFIG REQUIRED)\n"
             fp_block += "find_package(CURL CONFIG REQUIRED)\n"
             fp_block += "find_package(Protobuf CONFIG REQUIRED)\n"
-            fp_block += "find_package(OpenSSL REQUIRED)\n"
+            fp_block += "find_package(OpenSSL CONFIG REQUIRED)\n"
             fp_block += "find_package(unofficial-utfcpp CONFIG REQUIRED)\n"
             fp_block += "find_package(date CONFIG REQUIRED)\n"
             marker = "add_subdirectory(${LIBERTY_RECOMP_THIRDPARTY_ROOT})"
