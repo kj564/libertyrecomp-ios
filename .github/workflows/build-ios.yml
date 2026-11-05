@@ -64,12 +64,14 @@ jobs:
             new_lines.append(line)
         s = '\n'.join(new_lines)
         if mvk_deleted: print("OK: MoltenVK skipped")
-        # Add iOS to GNS skip list
+        # Add iOS to GNS skip list + NFD skip list (both same pattern)
         old_gns = 'NOT (LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ps4" OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "switch" OR ANDROID)'
         new_gns = 'NOT (LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ps4" OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "switch" OR ANDROID OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ios")'
-        if old_gns in s:
+        # This pattern appears twice (GNS + NFD) — replace all
+        count = s.count(old_gns)
+        if count > 0:
             s = s.replace(old_gns, new_gns)
-            print("OK: GNS skipped on iOS")
+            print(f"OK: {count} skip-list patterns patched (GNS + NFD)")
         with open(path, "w") as f: f.write(s)
         # Patch vcpkg.json: discord-rpc uses AppKit (macOS only). Exclude iOS.
         import json
@@ -89,11 +91,9 @@ jobs:
         if not has_sdl3:
             vj.setdefault("dependencies", []).append({"name": "sdl3"})
             print("OK: sdl3 added to vcpkg deps")
-        # Add nfd (LibertyRecomp links nfd::nfd)
-        has_nfd = any(isinstance(d, dict) and d.get("name") == "nfd" for d in vj.get("dependencies", []))
-        if not has_nfd:
-            vj.setdefault("dependencies", []).append({"name": "nfd"})
-            print("OK: nfd added to vcpkg deps")
+        # nfd (nativefiledialog-extended) port doesn't support iOS — skip.
+        # LibertyRecomp links nfd::nfd but on iOS, skip NFD entirely (no file dialog UI).
+        # We'll patch LibertyRecomp/CMakeLists.txt to not link nfd::nfd on iOS.
         print("OK: openssl added to vcpkg deps")
         with open("vcpkg.json", "w") as f: json.dump(vj, f, indent=4)
         # Add find_package calls to root CMakeLists.txt for vcpkg deps
@@ -112,12 +112,19 @@ jobs:
             fp_block += "find_package(OpenSSL CONFIG REQUIRED)\n"
             fp_block += "find_package(date CONFIG REQUIRED)\n"
             fp_block += "find_package(SDL3 CONFIG REQUIRED)\n"
-            fp_block += "find_package(nfd CONFIG REQUIRED)\n"
             marker = "add_subdirectory(${LIBERTY_RECOMP_THIRDPARTY_ROOT})"
             if marker in root:
                 root = root.replace(marker, fp_block + "\n" + marker, 1)
                 print("OK: find_package calls added for vcpkg deps")
         with open(root_path, "w") as f: f.write(root)
+        # Patch LibertyRecomp/CMakeLists.txt: comment out nfd::nfd link (iOS no NFD)
+        lr_path = "LibertyRecomp/CMakeLists.txt"
+        with open(lr_path) as f: lr = f.read()
+        if "nfd::nfd" in lr and "# nfd::nfd" not in lr:
+            # Replace nfd::nfd with comment (iOS doesn't have NFD)
+            lr = lr.replace("nfd::nfd", "# nfd::nfd  # SKIPPED on iOS")
+            print("OK: nfd::nfd link commented out in LibertyRecomp/CMakeLists.txt")
+        with open(lr_path, "w") as f: f.write(lr)
         PYEOF
 
     - name: Create dummy game payload (no real assets)
