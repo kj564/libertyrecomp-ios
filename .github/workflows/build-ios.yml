@@ -100,7 +100,6 @@ jobs:
             fp_block += "find_package(CURL CONFIG REQUIRED)\n"
             fp_block += "find_package(Protobuf CONFIG REQUIRED)\n"
             fp_block += "find_package(OpenSSL CONFIG REQUIRED)\n"
-            fp_block += "find_package(utfcpp CONFIG REQUIRED)\n"
             fp_block += "find_package(date CONFIG REQUIRED)\n"
             marker = "add_subdirectory(${LIBERTY_RECOMP_THIRDPARTY_ROOT})"
             if marker in root:
