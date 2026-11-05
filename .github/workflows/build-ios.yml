@@ -83,6 +83,27 @@ jobs:
                     dep["platform"] = "!ps4 & !ps5 & !ios"
                     print("OK: discord-rpc excluded on iOS")
         with open("vcpkg.json", "w") as f: json.dump(vj, f, indent=4)
+        # Add find_package calls to root CMakeLists.txt for vcpkg deps
+        # (LibertyRecomp links fmt::fmt, spdlog::spdlog, SDL3::SDL3-static, etc.
+        # but upstream doesn't call find_package — assumes vcpkg toolchain auto-links.
+        # With USE_REXGLUE_RUNTIME=OFF, those targets need explicit find_package.)
+        root_path = "CMakeLists.txt"
+        with open(root_path) as f: root = f.read()
+        if "find_package(fmt CONFIG REQUIRED)" not in root:
+            fp_block = "# find_package for vcpkg deps (added by iOS build patch)\n"
+            fp_block += "find_package(fmt CONFIG REQUIRED)\n"
+            fp_block += "find_package(spdlog CONFIG REQUIRED)\n"
+            fp_block += "find_package(freetype CONFIG REQUIRED)\n"
+            fp_block += "find_package(CURL CONFIG REQUIRED)\n"
+            fp_block += "find_package(Protobuf CONFIG REQUIRED)\n"
+            fp_block += "find_package(OpenSSL REQUIRED)\n"
+            fp_block += "find_package(unofficial-utfcpp CONFIG REQUIRED)\n"
+            fp_block += "find_package(date CONFIG REQUIRED)\n"
+            marker = "add_subdirectory(${LIBERTY_RECOMP_THIRDPARTY_ROOT})"
+            if marker in root:
+                root = root.replace(marker, fp_block + "\n" + marker, 1)
+                print("OK: find_package calls added for vcpkg deps")
+        with open(root_path, "w") as f: f.write(root)
         PYEOF
 
     - name: Create dummy game payload (no real assets)
