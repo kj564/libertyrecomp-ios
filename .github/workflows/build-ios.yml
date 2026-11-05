@@ -117,7 +117,27 @@ jobs:
                 root = root.replace(marker, fp_block + "\n" + marker, 1)
                 print("OK: find_package calls added for vcpkg deps")
         with open(root_path, "w") as f: f.write(root)
-        # Patch LibertyRecomp/CMakeLists.txt: comment out the nfd::nfd target_link_libraries line
+        # Patch LibertyRecomp/CMakeLists.txt: add iOS to LIBERTY_RECOMP_HAS_GNS skip
+        # (upstream skips ps4/switch/Android — add iOS so GNS not linked)
+        lr_path = "LibertyRecomp/CMakeLists.txt"
+        with open(lr_path) as f: lr = f.read()
+        # The GNS skip block: 'ANDROID)' -> 'ANDROID OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ios")'
+        # Find the specific GNS block (preceded by LIBERTY_RECOMP_HAS_GNS TRUE)
+        gns_marker = "set(LIBERTY_RECOMP_HAS_GNS TRUE)"
+        if gns_marker in lr:
+            # Find the ANDROID) in the next ~500 chars after the marker
+            idx = lr.index(gns_marker)
+            search_region = lr[idx:idx+800]
+            if "ANDROID)" in search_region and 'STREQUAL "ios"' not in search_region:
+                lr = lr[:idx] + search_region.replace("ANDROID)", 'ANDROID OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ios")', 1) + lr[idx+800:]
+                print("OK: iOS added to LIBERTY_RECOMP_HAS_GNS skip")
+        # Also comment out nfd::nfd link (NFD port unsupported on iOS)
+        old_nfd = "    target_link_libraries(LibertyRecomp PRIVATE nfd::nfd)"
+        new_nfd = "    # target_link_libraries(LibertyRecomp PRIVATE nfd::nfd)  # SKIPPED on iOS"
+        if old_nfd in lr:
+            lr = lr.replace(old_nfd, new_nfd)
+            print("OK: nfd::nfd link commented out")
+        with open(lr_path, "w") as f: f.write(lr)
         # The if-block condition is multi-line and hard to match. Instead, replace
         # the target_link_libraries line itself with a no-op comment.
         lr_path = "LibertyRecomp/CMakeLists.txt"
