@@ -41,18 +41,10 @@ with open("vcpkg.json", "w") as f: json.dump(vj, f, indent=4)
 # 3. Root CMakeLists.txt — FetchContent SDL3 + find_package
 root_path = "CMakeLists.txt"
 with open(root_path) as f: root = f.read()
-if "FetchContent_Declare(SDL3" not in root:
-    s = ("include(FetchContent)\n"
-         'FetchContent_Declare(SDL3 GIT_REPOSITORY https://github.com/libsdl-org/SDL.git GIT_TAG release-3.2.10 GIT_SHALLOW TRUE)\n'
-         'set(SDL_SHARED OFF CACHE BOOL "" FORCE)\n'
-         'set(SDL_STATIC ON CACHE BOOL "" FORCE)\n'
-         'set(SDL_TEST OFF CACHE BOOL "" FORCE)\n'
-         'FetchContent_MakeAvailable(SDL3)\n')
-    m = "add_subdirectory(${LIBERTY_RECOMP_THIRDPARTY_ROOT})"
-    if m in root: root = root.replace(m, s + "\n" + m, 1)
+# SDL3 provided by RexGlue thirdparty (no FetchContent needed)
+# (was causing target collision: RexGlue builds SDL3 from its own submodule)
 if "find_package(fmt CONFIG REQUIRED)" not in root:
-    fp = ("find_package(fmt CONFIG REQUIRED)\n"
-          "find_package(spdlog CONFIG REQUIRED)\n"
+    fp = ("# find_package for vcpkg deps NOT provided by RexGlue thirdparty\n"
           "find_package(freetype CONFIG REQUIRED)\n"
           "find_package(CURL CONFIG REQUIRED)\n"
           "find_package(Protobuf CONFIG REQUIRED)\n"
