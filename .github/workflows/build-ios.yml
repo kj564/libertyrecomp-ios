@@ -137,6 +137,12 @@ jobs:
         if old_nfd in lr:
             lr = lr.replace(old_nfd, new_nfd)
             print("OK: nfd::nfd link commented out")
+        # Also patch FFmpeg block: add iOS to skip (libavcodec target missing on iOS)
+        ff_old = "LIBERTY_RECOMP_PS4 OR LIBERTY_RECOMP_NX OR ANDROID"
+        ff_new = 'LIBERTY_RECOMP_PS4 OR LIBERTY_RECOMP_NX OR ANDROID OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ios"'
+        if ff_old in lr:
+            lr = lr.replace(ff_old, ff_new)
+            print("OK: iOS added to FFmpeg skip (libavcodec not linked)")
         with open(lr_path, "w") as f: f.write(lr)
         # The if-block condition is multi-line and hard to match. Instead, replace
         # the target_link_libraries line itself with a no-op comment.
@@ -149,6 +155,12 @@ jobs:
             print("OK: nfd::nfd target_link_libraries line commented out")
         else:
             print("WARN: nfd::nfd link line not found")
+        # Also patch FFmpeg block: add iOS to skip (libavcodec target missing on iOS)
+        ff_old = "LIBERTY_RECOMP_PS4 OR LIBERTY_RECOMP_NX OR ANDROID"
+        ff_new = 'LIBERTY_RECOMP_PS4 OR LIBERTY_RECOMP_NX OR ANDROID OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ios"'
+        if ff_old in lr:
+            lr = lr.replace(ff_old, ff_new)
+            print("OK: iOS added to FFmpeg skip (libavcodec not linked)")
         with open(lr_path, "w") as f: f.write(lr)
         PYEOF
 
