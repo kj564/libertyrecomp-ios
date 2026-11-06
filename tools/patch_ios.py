@@ -73,9 +73,9 @@ print("OK: LibertyRecomp links patched")
 #     (RexGlue src/core already supports iOS, just needs Vulkan disabled)
 rg_path = "glue/rexglue-sdk-main/CMakeLists.txt"
 with open(rg_path) as f: rg = f.read()
-# Force Vulkan=OFF
-rg = re.sub(r'option\(REXGLUE_USE_VULKAN[^)]*ON\)',
-            'option(REXGLUE_USE_VULKAN "Enable Vulkan graphics backend" OFF)', rg)
+# Force Vulkan=OFF (str.replace, not regex — regex [^)]* greedy bug)
+rg = rg.replace('option(REXGLUE_USE_VULKAN "Enable Vulkan graphics backend" ON)',
+                'option(REXGLUE_USE_VULKAN "Enable Vulkan graphics backend" OFF)')
 # Relax FATAL_ERROR (iOS uses Metal, not D3D12/Vulkan)
 rg = rg.replace('message(FATAL_ERROR "At least one graphics backend must be enabled',
                 '# message(FATAL_ERROR "At least one graphics backend must be enabled')
