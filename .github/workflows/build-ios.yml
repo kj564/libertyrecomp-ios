@@ -89,8 +89,8 @@ jobs:
         # Add sdl3 (LibertyRecomp links SDL3::SDL3-static)
         has_sdl3 = any(isinstance(d, dict) and d.get("name") == "sdl3" for d in vj.get("dependencies", []))
         if not has_sdl3:
-            vj.setdefault("dependencies", []).append({"name": "sdl3"})
-            print("OK: sdl3 added to vcpkg deps")
+            vj.setdefault("dependencies", []).append({"name": "sdl3", "version>=": "3.4.0"})
+            print("OK: sdl3 added to vcpkg deps (pinned to stable >=3.4.0)")
         # nfd (nativefiledialog-extended) port doesn't support iOS — skip.
         # LibertyRecomp links nfd::nfd but on iOS, skip NFD entirely (no file dialog UI).
         # We'll patch LibertyRecomp/CMakeLists.txt to not link nfd::nfd on iOS.
