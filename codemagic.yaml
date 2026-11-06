@@ -208,6 +208,23 @@ workflows:
               with open(rg_path, "w") as f: f.write(rg)
           except FileNotFoundError:
               print("WARN: RexGlue CMakeLists not found (glue dir)")
+          
+          # Create FindPythonInterp.cmake stub (removed in CMake 4.x)
+          # RexGlue's glslang dependency calls find_package(PythonInterp)
+          import os
+          os.makedirs("cmake", exist_ok=True)
+          stub = """# FindPythonInterp.cmake stub (CMake 4.x removed this module)
+# Wraps find_package(Python3) to provide PYTHON_EXECUTABLE
+find_package(Python3 COMPONENTS Interpreter)
+set(PYTHONINTERP_FOUND $\{Python3_Interpreter_FOUND\})
+set(PYTHON_EXECUTABLE $\{Python3_EXECUTABLE\})
+set(PYTHON_VERSION_STRING $\{Python3_VERSION\})
+set(PYTHON_VERSION_MAJOR $\{Python3_VERSION_MAJOR\})
+set(PYTHON_VERSION_MINOR $\{Python3_VERSION_MINOR\})
+set(PYTHON_VERSION_PATCH $\{Python3_VERSION_PATCH\})
+"""
+          with open("cmake/FindPythonInterp.cmake", "w") as f: f.write(stub)
+          print("OK: FindPythonInterp.cmake stub created")
           PYEOF
 
       - name: Create dummy game payload (no real assets)
@@ -240,6 +257,7 @@ workflows:
             -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED=NO \
             -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED=NO \
             -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY="" \
+            -DCMAKE_MODULE_PATH=$(pwd)/cmake \
             -DCMAKE_TOOLCHAIN_FILE=/tmp/vcpkg/scripts/buildsystems/vcpkg.cmake \
             -DVCPKG_TARGET_TRIPLET=arm64-ios \
             -DVCPKG_HOST_TRIPLET=arm64-osx \
