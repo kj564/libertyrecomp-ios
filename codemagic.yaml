@@ -102,11 +102,7 @@ workflows:
                   if "ios" not in plat:
                       dep["platform"] = "!ps4 & !ps5 & !ios"
                       print("OK: discord-rpc excluded on iOS")
-          # Add sdl3 to vcpkg deps
-          has_sdl3 = any(isinstance(d, dict) and d.get("name") == "sdl3" for d in vj.get("dependencies", []))
-          if not has_sdl3:
-              vj.setdefault("dependencies", []).append({"name": "sdl3", "version>=": "3.4.0"})
-              print("OK: sdl3 added to vcpkg deps (pinned stable >=3.4.0)")
+          # SDL3 via FetchContent (not vcpkg — vcpkg sdl3 port fails arm64-ios build)
           # Add openssl
           has_openssl = any(isinstance(d, dict) and d.get("name") == "openssl" for d in vj.get("dependencies", []))
           if not has_openssl and not "openssl" in vj.get("dependencies", []):
@@ -116,6 +112,19 @@ workflows:
           # Patch root CMakeLists.txt: add find_package calls
           root_path = "CMakeLists.txt"
           with open(root_path) as f: root = f.read()
+          # Add FetchContent SDL3 (vcpkg sdl3 port fails arm64-ios)
+          if "FetchContent_Declare(SDL3" not in root:
+              sdl3_fetch = "# FetchContent SDL3 (vcpkg port fails arm64-ios)\n"
+              sdl3_fetch += "include(FetchContent)\n"
+              sdl3_fetch += "FetchContent_Declare(SDL3 GIT_REPOSITORY https://github.com/libsdl-org/SDL.git GIT_TAG release-3.2.10 GIT_SHALLOW TRUE)\n"
+              sdl3_fetch += "set(SDL_SHARED OFF CACHE BOOL \"\" FORCE)\n"
+              sdl3_fetch += "set(SDL_STATIC ON CACHE BOOL \"\" FORCE)\n"
+              sdl3_fetch += "set(SDL_TEST OFF CACHE BOOL \"\" FORCE)\n"
+              sdl3_fetch += "FetchContent_MakeAvailable(SDL3)\n"
+              marker_fc = "add_subdirectory(${LIBERTY_RECOMP_THIRDPARTY_ROOT})"
+              if marker_fc in root:
+                  root = root.replace(marker_fc, sdl3_fetch + "\n" + marker_fc, 1)
+                  print("OK: FetchContent SDL3 added to root CMakeLists")
           if "find_package(fmt CONFIG REQUIRED)" not in root:
               fp_block = "# find_package for vcpkg deps (added by iOS build patch)\n"
               fp_block += "find_package(fmt CONFIG REQUIRED)\n"
