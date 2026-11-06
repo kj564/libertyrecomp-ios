@@ -105,8 +105,8 @@ workflows:
           # Add sdl3 to vcpkg deps
           has_sdl3 = any(isinstance(d, dict) and d.get("name") == "sdl3" for d in vj.get("dependencies", []))
           if not has_sdl3:
-              vj.setdefault("dependencies", []).append({"name": "sdl3"})
-              print("OK: sdl3 added to vcpkg deps")
+              vj.setdefault("dependencies", []).append({"name": "sdl3", "version>=": "3.4.0"})
+              print("OK: sdl3 added to vcpkg deps (pinned stable >=3.4.0)")
           # Add openssl
           has_openssl = any(isinstance(d, dict) and d.get("name") == "openssl" for d in vj.get("dependencies", []))
           if not has_openssl and not "openssl" in vj.get("dependencies", []):
