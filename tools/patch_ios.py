@@ -18,16 +18,8 @@ for line in lines:
 with open(path, "w") as f: f.writelines(new_lines)
 print(f"OK: {patched} add_subdirectory lines commented out")
 
-# Nuclear option: DELETE MoltenVK directory entirely
-# If something still calls add_subdirectory(MoltenVK), it will fail with
-# "directory not found" error that shows the call stack
-import shutil
-mvk_dir = "thirdparty/MoltenVK"
-if os.path.exists(mvk_dir):
-    shutil.rmtree(mvk_dir)
-    print("OK: MoltenVK directory DELETED (nuclear option)")
-else:
-    print("WARN: MoltenVK directory not found")
+# MoltenVK directory NOT deleted — DependencyPatches.cmake checks for its existence.
+# add_subdirectory is commented out, so MoltenVK/CMakeLists.txt won't execute.
 
 # 2. vcpkg.json — exclude discord-rpc, add openssl
 with open("vcpkg.json") as f: vj = json.load(f)
