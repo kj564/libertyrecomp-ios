@@ -215,6 +215,9 @@ workflows:
             -DLIBERTY_IOS_BUNDLE_IDENTIFIER="com.libertyrecomp.iphone13" \
             -DLIBERTY_RECOMP_EMBEDDED_ASSETS=OFF \
             -DUSE_REXGLUE_RUNTIME=OFF \
+            -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED=NO \
+            -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED=NO \
+            -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY="" \
             -DCMAKE_TOOLCHAIN_FILE=/tmp/vcpkg/scripts/buildsystems/vcpkg.cmake \
             -DVCPKG_TARGET_TRIPLET=arm64-ios \
             -DVCPKG_HOST_TRIPLET=arm64-osx \
@@ -227,7 +230,7 @@ workflows:
           #!/bin/bash -e
           cd LibertyRecompAndroid
           cmake --build out/build/ios-release --config Release -j$(sysctl -n hw.ncpu) 2>&1 | tail -200
-          APP=$(find out/build/ios-release -name "*.app" -type d | head -1)
+          APP=$(find out/build/ios-release -name "*.app" -type d -not -path "*/vcpkg_installed/*" | head -1)
           echo "Found app: $APP"
           if [ -z "$APP" ]; then
             echo "ERROR: no .app found"
