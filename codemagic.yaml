@@ -1,13 +1,4 @@
-# Codemagic CI/CD configuration for LibertyRecomp iOS build
-# Docs: https://docs.codemagic.io/yaml/yaml-getting-started/
-#
-# Setup (one-time):
-#   1. Sign in at https://codemagic.io with your GitHub account
-#   2. Click "Add application" → select kj564/libertyrecomp-ios
-#   3. Choose "macOS" platform, "Codemagic CLI" workflow
-#   4. This file auto-detects on next push to main
-#
-# Free tier: 500 macOS minutes/month for public repos
+name: LibertyRecomp iOS build
 
 workflows:
   ios-build:
@@ -18,7 +9,6 @@ workflows:
       vars:
         LIBERTY_IOS_BUNDLE_IDENTIFIER: "com.libertyrecomp.iphone13"
       xcode: latest
-      cocoapods: default
     triggering:
       events:
         - push
@@ -27,229 +17,45 @@ workflows:
           include: true
       cancel_previous_builds: true
     scripts:
-      - name: Install CMake + Ninja + Python deps
-        script: |
-          #!/bin/bash -e
-          brew install cmake ninja pkg-config
-          brew install llvm@18 molten-vk
-          pip3 install --break-system-packages pyyaml || true
+      - name: Install deps
+        script: brew install cmake ninja pkg-config llvm@18 molten-vk
 
-      - name: Verify Xcode + iOS SDK
+      - name: Install vcpkg
         script: |
-          #!/bin/bash -e
-          xcode-select -p
-          xcrun --sdk iphoneos --show-sdk-version
-          xcrun --sdk iphoneos --show-sdk-path
-
-      - name: Install vcpkg (full clone, no --depth)
-        script: |
-          #!/bin/bash -e
           git clone https://github.com/microsoft/vcpkg.git /tmp/vcpkg
           /tmp/vcpkg/bootstrap-vcpkg.sh
-          echo "export VCPKG_ROOT=/tmp/vcpkg" >> $CM_ENV
 
-      - name: Copy custom arm64-ios triplet
-        script: |
-          #!/bin/bash -e
-          cp vcpkg/triplets/arm64-ios.cmake /tmp/vcpkg/triplets/
-          cat /tmp/vcpkg/triplets/arm64-ios.cmake
+      - name: Copy arm64-ios triplet
+        script: cp vcpkg/triplets/arm64-ios.cmake /tmp/vcpkg/triplets/
 
-      - name: Clone upstream LibertyRecompAndroid
+      - name: Clone + setup upstream
         script: |
-          #!/bin/bash -e
           git clone --depth=1 https://github.com/vaduur/LibertyRecompAndroid.git
+          cd LibertyRecompAndroid && python3 tools/setup_repo.py
 
-      - name: Setup repo (pull submodules)
+      - name: Patch upstream for iOS
         script: |
-          #!/bin/bash -e
           cd LibertyRecompAndroid
-          python3 tools/setup_repo.py
-          du -sh .
+          python3 ../tools/patch_ios.py
+          mkdir -p cmake
+          cp ../cmake/FindPythonInterp.cmake cmake/
+          echo "FindPythonInterp stub copied"
 
-      - name: Patch upstream (MoltenVK + GNS + NFD + FFmpeg + discord-rpc skip)
+      - name: Create dummy payload + copy config
         script: |
-          #!/bin/bash -e
           cd LibertyRecompAndroid
-          python3 - <<'PYEOF'
-          # === BRUTE FORCE PATCH: comment out ALL problematic add_subdirectory lines ===
-          # Instead of fragile pattern matching, directly comment out each line
-          # that adds a subdirectory we don't want on iOS.
-          path = "thirdparty/CMakeLists.txt"
-          with open(path) as f: lines = f.readlines()
-          
-          # Subdirectories to SKIP on iOS (AppKit missing / unsupported / not needed)
-          skip_dirs = [
-              "MoltenVK",          # needs AppKit (macOS only)
-              "plume",             # Plume enables Vulkan → pulls MoltenVK → AppKit crash
-              "nativefiledialog-extended",  # port unsupported on iOS
-              "ffmpeg-core",       # downloads desktop prebuilts
-              "GameNetworkingSockets",  # needs OpenSSL iOS arch (cross-compile issue)
-          ]
-          
-          patched = 0
-          new_lines = []
-          for line in lines:
-              should_skip = False
-              for d in skip_dirs:
-                  if f'add_subdirectory("${{LIBERTY_RECOMP_THIRDPARTY_ROOT}}/{d}")' in line and not line.strip().startswith('#'):
-                      should_skip = True
-                      patched += 1
-                      break
-              if should_skip:
-                  new_lines.append("# " + line.rstrip() + "  # SKIPPED on iOS build\n")
-              else:
-                  new_lines.append(line)
-          
-          with open(path, "w") as f: f.writelines(new_lines)
-          print(f"OK: {patched} add_subdirectory lines commented out (MoltenVK, plume, NFD, ffmpeg, GNS)")
-          
-          # Patch vcpkg.json: exclude discord-rpc on iOS + add openssl + sdl3 FetchContent note
-          import json
-          with open("vcpkg.json") as f: vj = json.load(f)
-          for dep in vj.get("dependencies", []):
-              if not isinstance(dep, dict): continue
-              if dep.get("name") == "discord-rpc":
-                  dep["platform"] = "!ps4 & !ps5 & !ios"
-                  print("OK: discord-rpc excluded on iOS")
-          # Add openssl
-          if not any(isinstance(d, dict) and d.get("name") == "openssl" for d in vj.get("dependencies", [])):
-              vj.setdefault("dependencies", []).append("openssl")
-              print("OK: openssl added to vcpkg deps")
-          with open("vcpkg.json", "w") as f: json.dump(vj, f, indent=4)
-          
-          # Patch root CMakeLists.txt: add FetchContent SDL3 + find_package calls
-          root_path = "CMakeLists.txt"
-          with open(root_path) as f: root = f.read()
-          
-          # FetchContent SDL3 (vcpkg sdl3 port fails arm64-ios)
-          if "FetchContent_Declare(SDL3" not in root:
-              sdl3_fetch = "# FetchContent SDL3 (vcpkg port fails arm64-ios)\n"
-              sdl3_fetch += "include(FetchContent)\n"
-              sdl3_fetch += "FetchContent_Declare(SDL3 GIT_REPOSITORY https://github.com/libsdl-org/SDL.git GIT_TAG release-3.2.10 GIT_SHALLOW TRUE)\n"
-              sdl3_fetch += "set(SDL_SHARED OFF CACHE BOOL \"\" FORCE)\n"
-              sdl3_fetch += "set(SDL_STATIC ON CACHE BOOL \"\" FORCE)\n"
-              sdl3_fetch += "set(SDL_TEST OFF CACHE BOOL \"\" FORCE)\n"
-              sdl3_fetch += "FetchContent_MakeAvailable(SDL3)\n"
-              marker = "add_subdirectory(${LIBERTY_RECOMP_THIRDPARTY_ROOT})"
-              if marker in root:
-                  root = root.replace(marker, sdl3_fetch + "\n" + marker, 1)
-                  print("OK: FetchContent SDL3 added to root CMakeLists")
-          
-          # find_package calls for vcpkg deps
-          if "find_package(fmt CONFIG REQUIRED)" not in root:
-              fp_block = "# find_package for vcpkg deps (added by iOS build patch)\n"
-              fp_block += "find_package(fmt CONFIG REQUIRED)\n"
-              fp_block += "find_package(spdlog CONFIG REQUIRED)\n"
-              fp_block += "find_package(freetype CONFIG REQUIRED)\n"
-              fp_block += "find_package(CURL CONFIG REQUIRED)\n"
-              fp_block += "find_package(Protobuf CONFIG REQUIRED)\n"
-              fp_block += "find_package(OpenSSL CONFIG REQUIRED)\n"
-              fp_block += "find_package(date CONFIG REQUIRED)\n"
-              marker2 = "add_subdirectory(${LIBERTY_RECOMP_THIRDPARTY_ROOT})"
-              if marker2 in root:
-                  root = root.replace(marker2, fp_block + "\n" + marker2, 1)
-                  print("OK: find_package calls added for vcpkg deps")
-          with open(root_path, "w") as f: f.write(root)
-          
-          # Patch LibertyRecomp/CMakeLists.txt: comment out links to skipped targets
-          lr_path = "LibertyRecomp/CMakeLists.txt"
-          with open(lr_path) as f: lr = f.read()
-          
-          # Comment out nfd::nfd link + plume link (both skipped on iOS)
-          lr = lr.replace(
-              "    target_link_libraries(LibertyRecomp PRIVATE nfd::nfd)",
-              "    # target_link_libraries(LibertyRecomp PRIVATE nfd::nfd)  # SKIPPED on iOS"
-          )
-          # Comment out plume link (Plume skipped because it pulls MoltenVK → AppKit crash)
-          lr = lr.replace(
-              "    plume\n",
-              "    # plume  # SKIPPED on iOS (Plume pulls MoltenVK)\n"
-          )
-          print("OK: plume link commented out")
-          
-          # Add iOS to GNS skip (LIBERTY_RECOMP_HAS_GNS)
-          gns_marker = "set(LIBERTY_RECOMP_HAS_GNS TRUE)"
-          if gns_marker in lr:
-              idx = lr.index(gns_marker)
-              search_region = lr[idx:idx+800]
-              if "ANDROID)" in search_region and 'STREQUAL "ios"' not in search_region:
-                  lr = lr[:idx] + search_region.replace("ANDROID)", 'ANDROID OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ios")', 1) + lr[idx+800:]
-                  print("OK: iOS added to LIBERTY_RECOMP_HAS_GNS skip")
-          
-          # Add iOS to FFmpeg skip
-          ff_old = "LIBERTY_RECOMP_PS4 OR LIBERTY_RECOMP_NX OR ANDROID"
-          ff_new = 'LIBERTY_RECOMP_PS4 OR LIBERTY_RECOMP_NX OR ANDROID OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ios"'
-          if ff_old in lr:
-              lr = lr.replace(ff_old, ff_new)
-              print("OK: iOS added to FFmpeg skip")
-          
-          with open(lr_path, "w") as f: f.write(lr)
-          print("OK: nfd::nfd link commented out")
-          
-          # Patch RexGlue CMakeLists.txt: force Vulkan=OFF on iOS
-          # (prevents MoltenVK dependency which needs AppKit)
-          rg_path = "glue/rexglue-sdk-main/CMakeLists.txt"
-          try:
-              with open(rg_path) as f: rg = f.read()
-              # Replace 'option(REXGLUE_USE_VULKAN ... ON)' with OFF for iOS
-              if "option(REXGLUE_USE_VULKAN" in rg:
-                  import re
-                  rg = re.sub(
-                      r'option\(REXGLUE_USE_VULKAN[^)]*ON\)',
-                      'option(REXGLUE_USE_VULKAN "Enable Vulkan graphics backend" OFF)',
-                      rg
-                  )
-                  print("OK: RexGlue Vulkan forced OFF")
-              # Also relax FATAL_ERROR when both backends off
-              rg = rg.replace(
-                  'message(FATAL_ERROR "At least one graphics backend must be enabled',
-                  '# message(FATAL_ERROR "At least one graphics backend must be enabled'
-              )
-              with open(rg_path, "w") as f: f.write(rg)
-          except FileNotFoundError:
-              print("WARN: RexGlue CMakeLists not found (glue dir)")
-          
-          PYEOF
-        # Create FindPythonInterp.cmake stub (removed in CMake 4.x)
-        mkdir -p cmake
-        cat > cmake/FindPythonInterp.cmake << 'STUBEOF'
-# FindPythonInterp.cmake stub (CMake 4.x removed this module)
-# Wraps find_package(Python3) to provide PYTHON_EXECUTABLE
-find_package(Python3 COMPONENTS Interpreter)
-set(PYTHONINTERP_FOUND $\{Python3_Interpreter_FOUND\})
-set(PYTHON_EXECUTABLE $\{Python3_EXECUTABLE\})
-set(PYTHON_VERSION_STRING $\{Python3_VERSION\})
-set(PYTHON_VERSION_MAJOR $\{Python3_VERSION_MAJOR\})
-set(PYTHON_VERSION_MINOR $\{Python3_VERSION_MINOR\})
-set(PYTHON_VERSION_PATCH $\{Python3_VERSION_PATCH\})
-STUBEOF
-        echo "OK: FindPythonInterp.cmake stub created"
-
-      - name: Create dummy game payload (no real assets)
-        script: |
-          #!/bin/bash -e
-          cd LibertyRecompAndroid
-          mkdir -p tools/local_game_payload
-          for f in default.xex default.xexp aes_key.bin common.rpf xbox360.rpf audio.rpf; do
-            touch "tools/local_game_payload/$f"
-          done
           mkdir -p tools/local_game_payload/{common,xbox360,audio,update}
+          for f in default.xex default.xexp aes_key.bin common.rpf xbox360.rpf audio.rpf; do touch "tools/local_game_payload/$f"; done
+          cp ../config.toml config.toml || true
 
-      - name: Copy iPhone 13 config.toml
+      - name: Configure
         script: |
-          #!/bin/bash -e
-          cp config.toml LibertyRecompAndroid/config.toml || true
-
-      - name: Configure (iOS Release, Metal, vcpkg arm64-ios)
-        script: |
-          #!/bin/bash -e
           cd LibertyRecompAndroid
           export CC=/opt/homebrew/opt/llvm@18/bin/clang
           export CXX=/opt/homebrew/opt/llvm@18/bin/clang++
           cmake --preset ios-release \
             -DCMAKE_C_COMPILER=/opt/homebrew/opt/llvm@18/bin/clang \
             -DCMAKE_CXX_COMPILER=/opt/homebrew/opt/llvm@18/bin/clang++ \
-            -DLIBERTY_IOS_DEVELOPMENT_TEAM="" \
             -DLIBERTY_IOS_BUNDLE_IDENTIFIER="com.libertyrecomp.iphone13" \
             -DLIBERTY_RECOMP_EMBEDDED_ASSETS=OFF \
             -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED=NO \
@@ -263,31 +69,19 @@ STUBEOF
             -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$(pwd)/toolchains/ios.cmake \
             -GXcode
 
-      - name: Build .app (vcpkg builds deps, may take 60-90 min)
+      - name: Build .app + package .ipa
         script: |
-          #!/bin/bash -e
           cd LibertyRecompAndroid
           cmake --build out/build/ios-release --config Release -j$(sysctl -n hw.ncpu) 2>&1 | tail -200
           APP=$(find out/build/ios-release -name "*.app" -type d -not -path "*/vcpkg_installed/*" | head -1)
           echo "Found app: $APP"
-          if [ -z "$APP" ]; then
-            echo "ERROR: no .app found"
-            ls -la out/build/ios-release/
-            exit 1
-          fi
+          if [ -z "$APP" ]; then echo "ERROR: no .app found"; ls -la out/build/ios-release/; exit 1; fi
           du -sh "$APP"
-          # Package unsigned .ipa
-          APP_DIR=$(dirname "$APP")
-          APP_NAME=$(basename "$APP")
-          cd "$APP_DIR"
-          rm -rf Payload
-          mkdir Payload
-          cp -R "$APP_NAME" Payload/
+          APP_DIR=$(dirname "$APP"); APP_NAME=$(basename "$APP")
+          cd "$APP_DIR"; rm -rf Payload; mkdir Payload; cp -R "$APP_NAME" Payload/
           zip -r -q "LibertyRecomp-unsigned.ipa" Payload
           ls -la "LibertyRecomp-unsigned.ipa"
 
     artifacts:
       - LibertyRecompAndroid/out/build/ios-release/**/LibertyRecomp-unsigned.ipa
       - LibertyRecompAndroid/out/build/ios-release/CMakeCache.txt
-      - LibertyRecompAndroid/out/build/ios-release/CMakeFiles/CMakeOutput.log
-      - LibertyRecompAndroid/out/build/ios-release/CMakeFiles/CMakeError.log
