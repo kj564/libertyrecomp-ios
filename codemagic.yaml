@@ -155,11 +155,17 @@ workflows:
           lr_path = "LibertyRecomp/CMakeLists.txt"
           with open(lr_path) as f: lr = f.read()
           
-          # Comment out nfd::nfd link
+          # Comment out nfd::nfd link + plume link (both skipped on iOS)
           lr = lr.replace(
               "    target_link_libraries(LibertyRecomp PRIVATE nfd::nfd)",
               "    # target_link_libraries(LibertyRecomp PRIVATE nfd::nfd)  # SKIPPED on iOS"
           )
+          # Comment out plume link (Plume skipped because it pulls MoltenVK → AppKit crash)
+          lr = lr.replace(
+              "    plume\n",
+              "    # plume  # SKIPPED on iOS (Plume pulls MoltenVK)\n"
+          )
+          print("OK: plume link commented out")
           
           # Add iOS to GNS skip (LIBERTY_RECOMP_HAS_GNS)
           gns_marker = "set(LIBERTY_RECOMP_HAS_GNS TRUE)"
