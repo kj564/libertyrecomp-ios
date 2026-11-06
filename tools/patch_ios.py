@@ -18,6 +18,15 @@ for line in lines:
 with open(path, "w") as f: f.writelines(new_lines)
 print(f"OK: {patched} add_subdirectory lines commented out")
 
+# Patch toolchains/ios.cmake: raise deployment target to iOS 26.0
+# (std::from_chars for floating-point introduced in iOS 26.0)
+ios_cmake = "toolchains/ios.cmake"
+if os.path.exists(ios_cmake):
+    with open(ios_cmake) as f: ic = f.read()
+    ic = ic.replace('"16.0"', '"26.0"')
+    with open(ios_cmake, "w") as f: f.write(ic)
+    print("OK: iOS deployment target raised to 26.0 (from_chars support)")
+
 # MoltenVK: overwrite CMakeLists.txt with empty file (belt-and-suspenders)
 # Even if something calls add_subdirectory(MoltenVK) that we can't find,
 # the empty CMakeLists.txt won't execute find_library(AppKit)
