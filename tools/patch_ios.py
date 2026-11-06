@@ -18,8 +18,16 @@ for line in lines:
 with open(path, "w") as f: f.writelines(new_lines)
 print(f"OK: {patched} add_subdirectory lines commented out")
 
-# MoltenVK directory NOT deleted — DependencyPatches.cmake checks for its existence.
-# add_subdirectory is commented out, so MoltenVK/CMakeLists.txt won't execute.
+# MoltenVK: overwrite CMakeLists.txt with empty file (belt-and-suspenders)
+# Even if something calls add_subdirectory(MoltenVK) that we can't find,
+# the empty CMakeLists.txt won't execute find_library(AppKit)
+mvk_cmake = "thirdparty/MoltenVK/CMakeLists.txt"
+if os.path.exists(mvk_cmake):
+    with open(mvk_cmake, "w") as f:
+        f.write("# MoltenVK CMakeLists.txt disabled for iOS build\n")
+    print("OK: MoltenVK/CMakeLists.txt overwritten (empty — no AppKit find_library)")
+else:
+    print("WARN: MoltenVK/CMakeLists.txt not found")
 
 # 2. vcpkg.json — exclude discord-rpc, add openssl
 with open("vcpkg.json") as f: vj = json.load(f)
