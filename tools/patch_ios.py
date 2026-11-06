@@ -63,12 +63,13 @@ if "find_package(fmt CONFIG REQUIRED)" not in root:
 # Force REXGLUE_USE_VULKAN=OFF before RexGlue is processed
 # (option() won't override if cache var already exists via -D, but this is belt-and-suspenders)
 if "set(REXGLUE_USE_VULKAN OFF CACHE BOOL" not in root:
+    # Replace ALL occurrences (3 total: GRAINE_MAC, GRAINE_ANDROID, default path)
+    # The default path (line 240) is what runs for iOS
     root = root.replace(
-        "add_subdirectory(\"glue\")",
-        "set(REXGLUE_USE_VULKAN OFF CACHE BOOL \"\" FORCE)\nset(REXGLUE_USE_D3D12 OFF CACHE BOOL \"\" FORCE)\nadd_subdirectory(\"glue\")",
-        1
+        'add_subdirectory("glue")',
+        'set(REXGLUE_USE_VULKAN OFF CACHE BOOL "" FORCE)\nset(REXGLUE_USE_D3D12 OFF CACHE BOOL "" FORCE)\nadd_subdirectory("glue")',
     )
-    print("OK: forced REXGLUE_USE_VULKAN=OFF before glue/ subdirectory")
+    print("OK: forced REXGLUE_USE_VULKAN=OFF before ALL add_subdirectory(glue) calls")
 with open(root_path, "w") as f: f.write(root)
 print("OK: FetchContent SDL3 + find_package added")
 
