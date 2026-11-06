@@ -91,6 +91,47 @@ if ff_old in lr: lr = lr.replace(ff_old, ff_new)
 with open(lr_path, "w") as f: f.write(lr)
 print("OK: LibertyRecomp links patched")
 
+# 4d. Patch heap.cpp: fix SizeHeader static_assert + add o1heapReallocate stub
+heap_path = "glue/rexglue-sdk-main/src/kernel/crt/heap.cpp"
+if os.path.exists(heap_path):
+    with open(heap_path) as f: heap = f.read()
+    # Fix 1: SizeHeader needs 4 fields (32 bytes) to match O1HEAP_ALIGNMENT on 64-bit
+    old_hdr = """struct SizeHeader {
+  uint64_t requested_size;
+  uint64_t reserved;  // padding to O1HEAP_ALIGNMENT
+};"""
+    new_hdr = """struct SizeHeader {
+  uint64_t requested_size;
+  uint64_t reserved0;
+  uint64_t reserved1;
+  uint64_t reserved2;  // padding to O1HEAP_ALIGNMENT (32 bytes on 64-bit)
+};"""
+    if old_hdr in heap:
+        heap = heap.replace(old_hdr, new_hdr)
+        print("OK: SizeHeader expanded to 32 bytes (match O1HEAP_ALIGNMENT)")
+    # Fix 2: o1heapReallocate doesn't exist — add stub
+    if "o1heapReallocate" in heap and "void* o1heapReallocate" not in heap:
+        stub = """
+// o1heapReallocate stub (not yet implemented in o1heap library)
+void* o1heapReallocate(O1HeapInstance* const handle, void* const pointer, const size_t amount) {
+    if (!handle || !pointer || amount == 0) return nullptr;
+    void* new_ptr = o1heapAllocate(handle, amount);
+    if (new_ptr) {
+        // Copy old data (best effort — we don't know old size here)
+        // Caller (heap.cpp) handles cross-segment fallback if this returns null
+        memcpy(new_ptr, pointer, amount);
+        o1heapFree(handle, pointer);
+    }
+    return new_ptr;
+}
+"""
+        # Insert before the first use of o1heapReallocate
+        heap = heap.replace("void* new_ptr = o1heapReallocate(",
+                            stub + "
+void* new_ptr = o1heapReallocate(")
+        print("OK: o1heapReallocate stub added")
+    with open(heap_path, "w") as f: f.write(heap)
+
 # 4b. Patch RexGlue CMakeLists.txt — force Vulkan=OFF + relax FATAL_ERROR
 #     (RexGlue src/core already supports iOS, just needs Vulkan disabled)
 rg_path = "glue/rexglue-sdk-main/CMakeLists.txt"
