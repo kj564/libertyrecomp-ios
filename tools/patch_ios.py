@@ -69,13 +69,30 @@ if ff_old in lr: lr = lr.replace(ff_old, ff_new)
 with open(lr_path, "w") as f: f.write(lr)
 print("OK: LibertyRecomp links patched")
 
-# 4b. LibertyRecompLib/CMakeLists.txt — add RexGlue include path for rex/ppc.h
-lrl_path = "LibertyRecompLib/CMakeLists.txt"
-with open(lrl_path) as f: lrl = f.read()
-# Add glue/rexglue-sdk-main/include to existing target_include_directories block
-old_inc = '"${REXGLUE_GTA4_RECOMP}/generated"'
-new_inc = '"${REXGLUE_GTA4_RECOMP}/generated"\n    "${CMAKE_SOURCE_DIR}/glue/rexglue-sdk-main/include"'
-if old_inc in lrl and "rexglue-sdk-main/include" not in lrl:
-    lrl = lrl.replace(old_inc, new_inc)
-    print("OK: RexGlue include path added to LibertyRecompLib/CMakeLists.txt")
-with open(lrl_path, "w") as f: f.write(lrl)
+# 4b. Patch RexGlue CMakeLists.txt — force Vulkan=OFF + relax FATAL_ERROR
+#     (RexGlue src/core already supports iOS, just needs Vulkan disabled)
+rg_path = "glue/rexglue-sdk-main/CMakeLists.txt"
+with open(rg_path) as f: rg = f.read()
+# Force Vulkan=OFF
+rg = re.sub(r'option\(REXGLUE_USE_VULKAN[^)]*ON\)',
+            'option(REXGLUE_USE_VULKAN "Enable Vulkan graphics backend" OFF)', rg)
+# Relax FATAL_ERROR (iOS uses Metal, not D3D12/Vulkan)
+rg = rg.replace('message(FATAL_ERROR "At least one graphics backend must be enabled',
+                '# message(FATAL_ERROR "At least one graphics backend must be enabled')
+with open(rg_path, "w") as f: f.write(rg)
+print("OK: RexGlue Vulkan=OFF + FATAL_ERROR relaxed")
+
+# 4c. Create FindPythonInterp.cmake stub (removed in CMake 4.x)
+import os
+os.makedirs("cmake", exist_ok=True)
+with open("cmake/FindPythonInterp.cmake", "w") as f:
+    f.write("""# FindPythonInterp.cmake stub (CMake 4.x removed this module)
+find_package(Python3 COMPONENTS Interpreter)
+set(PYTHONINTERP_FOUND \${Python3_Interpreter_FOUND})
+set(PYTHON_EXECUTABLE \${Python3_EXECUTABLE})
+set(PYTHON_VERSION_STRING \${Python3_VERSION})
+set(PYTHON_VERSION_MAJOR \${Python3_VERSION_MAJOR})
+set(PYTHON_VERSION_MINOR \${Python3_VERSION_MINOR})
+set(PYTHON_VERSION_PATCH \${Python3_VERSION_PATCH})
+""")
+print("OK: FindPythonInterp.cmake stub created")
