@@ -41,6 +41,14 @@ workflows:
           cp ../cmake/FindPythonInterp.cmake cmake/
           echo "FindPythonInterp stub copied"
 
+      - name: Verify patches applied
+        script: |
+          cd LibertyRecompAndroid
+          echo "=== thirdparty/CMakeLists.txt MoltenVK ==="
+          grep -n "MoltenVK" thirdparty/CMakeLists.txt | head -5
+          echo "=== RexGlue Vulkan ==="
+          grep -n "REXGLUE_USE_VULKAN" glue/rexglue-sdk-main/CMakeLists.txt | head -5
+
       - name: Create dummy payload + copy config
         script: |
           cd LibertyRecompAndroid
@@ -58,6 +66,8 @@ workflows:
             -DCMAKE_CXX_COMPILER=/opt/homebrew/opt/llvm@18/bin/clang++ \
             -DLIBERTY_IOS_BUNDLE_IDENTIFIER="com.libertyrecomp.iphone13" \
             -DLIBERTY_RECOMP_EMBEDDED_ASSETS=OFF \
+            -DREXGLUE_USE_VULKAN=OFF \
+            -DREXGLUE_USE_D3D12=OFF \
             -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED=NO \
             -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED=NO \
             -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY="" \
