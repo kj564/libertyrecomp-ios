@@ -16,7 +16,6 @@ workflows:
     max_build_duration: 180
     environment:
       vars:
-        LIBERTY_IOS_DEVELOPMENT_TEAM: ""
         LIBERTY_IOS_BUNDLE_IDENTIFIER: "com.libertyrecomp.iphone13"
       xcode: latest
       cocoapods: default
