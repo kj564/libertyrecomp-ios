@@ -18,6 +18,17 @@ for line in lines:
 with open(path, "w") as f: f.writelines(new_lines)
 print(f"OK: {patched} add_subdirectory lines commented out")
 
+# Nuclear option: DELETE MoltenVK directory entirely
+# If something still calls add_subdirectory(MoltenVK), it will fail with
+# "directory not found" error that shows the call stack
+import shutil
+mvk_dir = "thirdparty/MoltenVK"
+if os.path.exists(mvk_dir):
+    shutil.rmtree(mvk_dir)
+    print("OK: MoltenVK directory DELETED (nuclear option)")
+else:
+    print("WARN: MoltenVK directory not found")
+
 # 2. vcpkg.json — exclude discord-rpc, add openssl
 with open("vcpkg.json") as f: vj = json.load(f)
 for dep in vj.get("dependencies", []):
@@ -49,6 +60,15 @@ if "find_package(fmt CONFIG REQUIRED)" not in root:
           "find_package(date CONFIG REQUIRED)\n")
     m = "add_subdirectory(${LIBERTY_RECOMP_THIRDPARTY_ROOT})"
     if m in root: root = root.replace(m, fp + "\n" + m, 1)
+# Force REXGLUE_USE_VULKAN=OFF before RexGlue is processed
+# (option() won't override if cache var already exists via -D, but this is belt-and-suspenders)
+if "set(REXGLUE_USE_VULKAN OFF CACHE BOOL" not in root:
+    root = root.replace(
+        "add_subdirectory(\"glue\")",
+        "set(REXGLUE_USE_VULKAN OFF CACHE BOOL \"\" FORCE)\nset(REXGLUE_USE_D3D12 OFF CACHE BOOL \"\" FORCE)\nadd_subdirectory(\"glue\")",
+        1
+    )
+    print("OK: forced REXGLUE_USE_VULKAN=OFF before glue/ subdirectory")
 with open(root_path, "w") as f: f.write(root)
 print("OK: FetchContent SDL3 + find_package added")
 
