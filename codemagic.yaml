@@ -48,6 +48,10 @@ workflows:
           grep -n "MoltenVK" thirdparty/CMakeLists.txt | head -5
           echo "=== RexGlue Vulkan ==="
           grep -n "REXGLUE_USE_VULKAN" glue/rexglue-sdk-main/CMakeLists.txt | head -5
+          echo "=== Root CMakeLists force cache var ==="
+          grep -n "REXGLUE_USE_VULKAN OFF CACHE" CMakeLists.txt | head -5
+          echo "=== Root CMakeLists add_subdirectory(glue) ==="
+          grep -n "add_subdirectory.*glue" CMakeLists.txt | head -5
 
       - name: Create dummy payload + copy config
         script: |
