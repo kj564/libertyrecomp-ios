@@ -102,6 +102,19 @@ jobs:
         # With USE_REXGLUE_RUNTIME=OFF, those targets need explicit find_package.)
         root_path = "CMakeLists.txt"
         with open(root_path) as f: root = f.read()
+        # Add FetchContent SDL3 (vcpkg sdl3 port fails arm64-ios)
+        if "FetchContent_Declare(SDL3" not in root:
+            sdl3_fetch = "# FetchContent SDL3 (vcpkg port fails arm64-ios)\n"
+            sdl3_fetch += "include(FetchContent)\n"
+            sdl3_fetch += "FetchContent_Declare(SDL3 GIT_REPOSITORY https://github.com/libsdl-org/SDL.git GIT_TAG release-3.2.10 GIT_SHALLOW TRUE)\n"
+            sdl3_fetch += "set(SDL_SHARED OFF CACHE BOOL \"\" FORCE)\n"
+            sdl3_fetch += "set(SDL_STATIC ON CACHE BOOL \"\" FORCE)\n"
+            sdl3_fetch += "set(SDL_TEST OFF CACHE BOOL \"\" FORCE)\n"
+            sdl3_fetch += "FetchContent_MakeAvailable(SDL3)\n"
+            marker_fc = "add_subdirectory(${LIBERTY_RECOMP_THIRDPARTY_ROOT})"
+            if marker_fc in root:
+                root = root.replace(marker_fc, sdl3_fetch + "\n" + marker_fc, 1)
+                print("OK: FetchContent SDL3 added to root CMakeLists")
         if "find_package(fmt CONFIG REQUIRED)" not in root:
             fp_block = "# find_package for vcpkg deps (added by iOS build patch)\n"
             fp_block += "find_package(fmt CONFIG REQUIRED)\n"
@@ -111,7 +124,7 @@ jobs:
             fp_block += "find_package(Protobuf CONFIG REQUIRED)\n"
             fp_block += "find_package(OpenSSL CONFIG REQUIRED)\n"
             fp_block += "find_package(date CONFIG REQUIRED)\n"
-            fp_block += "find_package(SDL3 CONFIG REQUIRED)\n"
+
             marker = "add_subdirectory(${LIBERTY_RECOMP_THIRDPARTY_ROOT})"
             if marker in root:
                 root = root.replace(marker, fp_block + "\n" + marker, 1)

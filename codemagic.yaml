@@ -125,7 +125,7 @@ workflows:
               fp_block += "find_package(Protobuf CONFIG REQUIRED)\n"
               fp_block += "find_package(OpenSSL CONFIG REQUIRED)\n"
               fp_block += "find_package(date CONFIG REQUIRED)\n"
-              fp_block += "find_package(SDL3 CONFIG REQUIRED)\n"
+  
               marker = "add_subdirectory(${LIBERTY_RECOMP_THIRDPARTY_ROOT})"
               if marker in root:
                   root = root.replace(marker, fp_block + "\n" + marker, 1)
