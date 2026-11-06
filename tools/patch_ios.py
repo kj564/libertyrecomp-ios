@@ -66,12 +66,16 @@ if g in lr:
 ff_old = "LIBERTY_RECOMP_PS4 OR LIBERTY_RECOMP_NX OR ANDROID"
 ff_new = 'LIBERTY_RECOMP_PS4 OR LIBERTY_RECOMP_NX OR ANDROID OR LIBERTY_RECOMP_TARGET_PLATFORM STREQUAL "ios"'
 if ff_old in lr: lr = lr.replace(ff_old, ff_new)
-# Add RexGlue include path (USE_REXGLUE_RUNTIME=OFF means headers not auto-added)
-if "rexglue-sdk-main/include" not in lr:
-    inc = 'target_include_directories(LibertyRecompLib PRIVATE ${CMAKE_SOURCE_DIR}/glue/rexglue-sdk-main/include)\n'
-    idx = lr.find("target_link_libraries(LibertyRecomp PRIVATE")
-    if idx > 0:
-        lr = lr[:idx] + inc + lr[idx:]
-        print("OK: RexGlue include path added to LibertyRecompLib")
 with open(lr_path, "w") as f: f.write(lr)
-print("OK: LibertyRecomp links patched + include path added")
+print("OK: LibertyRecomp links patched")
+
+# 4b. LibertyRecompLib/CMakeLists.txt — add RexGlue include path for rex/ppc.h
+lrl_path = "LibertyRecompLib/CMakeLists.txt"
+with open(lrl_path) as f: lrl = f.read()
+# Add glue/rexglue-sdk-main/include to existing target_include_directories block
+old_inc = '"${REXGLUE_GTA4_RECOMP}/generated"'
+new_inc = '"${REXGLUE_GTA4_RECOMP}/generated"\n    "${CMAKE_SOURCE_DIR}/glue/rexglue-sdk-main/include"'
+if old_inc in lrl and "rexglue-sdk-main/include" not in lrl:
+    lrl = lrl.replace(old_inc, new_inc)
+    print("OK: RexGlue include path added to LibertyRecompLib/CMakeLists.txt")
+with open(lrl_path, "w") as f: f.write(lrl)
