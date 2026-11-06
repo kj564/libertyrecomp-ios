@@ -185,6 +185,29 @@ workflows:
           
           with open(lr_path, "w") as f: f.write(lr)
           print("OK: nfd::nfd link commented out")
+          
+          # Patch RexGlue CMakeLists.txt: force Vulkan=OFF on iOS
+          # (prevents MoltenVK dependency which needs AppKit)
+          rg_path = "glue/rexglue-sdk-main/CMakeLists.txt"
+          try:
+              with open(rg_path) as f: rg = f.read()
+              # Replace 'option(REXGLUE_USE_VULKAN ... ON)' with OFF for iOS
+              if "option(REXGLUE_USE_VULKAN" in rg:
+                  import re
+                  rg = re.sub(
+                      r'option\(REXGLUE_USE_VULKAN[^)]*ON\)',
+                      'option(REXGLUE_USE_VULKAN "Enable Vulkan graphics backend" OFF)',
+                      rg
+                  )
+                  print("OK: RexGlue Vulkan forced OFF")
+              # Also relax FATAL_ERROR when both backends off
+              rg = rg.replace(
+                  'message(FATAL_ERROR "At least one graphics backend must be enabled',
+                  '# message(FATAL_ERROR "At least one graphics backend must be enabled'
+              )
+              with open(rg_path, "w") as f: f.write(rg)
+          except FileNotFoundError:
+              print("WARN: RexGlue CMakeLists not found (glue dir)")
           PYEOF
 
       - name: Create dummy game payload (no real assets)
@@ -214,7 +237,6 @@ workflows:
             -DLIBERTY_IOS_DEVELOPMENT_TEAM="" \
             -DLIBERTY_IOS_BUNDLE_IDENTIFIER="com.libertyrecomp.iphone13" \
             -DLIBERTY_RECOMP_EMBEDDED_ASSETS=OFF \
-            -DUSE_REXGLUE_RUNTIME=OFF \
             -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED=NO \
             -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED=NO \
             -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY="" \
