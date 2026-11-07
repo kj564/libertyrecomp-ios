@@ -23,3 +23,5 @@
  GET /l 404 in 36ms (compile: 9ms, render: 28ms)
  GET / 200 in 29ms (compile: 4ms, render: 26ms)
  GET /l 404 in 29ms (compile: 7ms, render: 22ms)
+ GET / 200 in 27ms (compile: 4ms, render: 23ms)
+ GET /l 404 in 29ms (compile: 7ms, render: 22ms)
