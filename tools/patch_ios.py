@@ -27,13 +27,17 @@ if os.path.exists(mvk_cmake):
 else:
     print("WARN: MoltenVK/CMakeLists.txt not found")
 
-# 1c. Patch toolchains/ios.cmake: raise deployment target to iOS 26.0
+# 1c. Patch toolchains/ios.cmake: keep deployment target at iOS 16.0
+# (from_chars replaced with strtod in numeric.h, so iOS 16 is sufficient)
+# No change needed — upstream already sets 16.0
 ios_cmake = "toolchains/ios.cmake"
 if os.path.exists(ios_cmake):
     with open(ios_cmake) as f: ic = f.read()
-    ic = ic.replace('"16.0"', '"26.0"')
+    # Ensure deployment target is 16.0 (iPhone 13 supports iOS 16+)
+    if '"26.0"' in ic:
+        ic = ic.replace('"26.0"', '"16.0"')
     with open(ios_cmake, "w") as f: f.write(ic)
-    print("OK: iOS deployment target raised to 26.0")
+    print("OK: iOS deployment target = 16.0 (iPhone 13 compatible)")
 
 # 2. vcpkg.json — exclude discord-rpc, add openssl
 with open("vcpkg.json") as f: vj = json.load(f)
