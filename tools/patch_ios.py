@@ -107,7 +107,37 @@ with open("cmake/FindPythonInterp.cmake", "w") as f:
     f.write("set(PYTHON_VERSION_PATCH ${Python3_VERSION_PATCH})\n")
 print("OK: FindPythonInterp.cmake stub created")
 
-# 4d. numeric.h: replace float from_chars with strtod (iOS <26.0 availability)
+# 4d. exception_handler_mac.cpp: stub for iOS arm64 (x86_64 registers)
+eh_path = "glue/rexglue-sdk-main/src/core/exception_handler_mac.cpp"
+if os.path.exists(eh_path):
+    with open(eh_path, "w") as f:
+        f.write("// exception_handler_mac.cpp — STUBBED for iOS arm64\n")
+        f.write("// Original uses x86_64 register names (rip, rax, etc) without arch guard.\n")
+        f.write("// On arm64, HostThreadContext has different fields (x[31], sp, pc, pstate).\n")
+        f.write("// iOS sandbox restricts signal handlers anyway — stub is safe.\n")
+        f.write("#include <rex/exception_handler.h>\n")
+        f.write("#if REX_PLATFORM_LINUX || REX_PLATFORM_MAC\n")
+        f.write("namespace rex::arch {\n")
+        f.write("bool signal_handlers_installed_ = false;\n")
+        f.write("bool InstallSignalHandlers() { return true; }\n")
+        f.write("bool UninstallSignalHandlers() { return true; }\n")
+        f.write("void ExceptionHandlerCallback(int, siginfo_t*, void*) {}\n")
+        f.write("}  // namespace rex::arch\n")
+        f.write("#endif\n")
+    print("OK: exception_handler_mac.cpp stubbed for iOS arm64")
+
+# 4d2. exception_handler_posix.cpp: stub for iOS arm64 (same x86_64 issue)
+ehp_path = "glue/rexglue-sdk-main/src/core/exception_handler_posix.cpp"
+if os.path.exists(ehp_path):
+    with open(ehp_path, "w") as f:
+        f.write("// exception_handler_posix.cpp — STUBBED for iOS arm64\n")
+        f.write("// Same x86_64 register name issue as exception_handler_mac.cpp.\n")
+        f.write("// On Apple platforms, exception_handler_mac.cpp is used instead.\n")
+        f.write("// This stub prevents compilation on iOS (which selects the _mac variant).\n")
+        f.write("#include <rex/exception_handler.h>\n")
+    print("OK: exception_handler_posix.cpp stubbed for iOS arm64")
+
+# 4d3. numeric.h: replace float from_chars with strtod (iOS <26.0 availability)
 numeric_path = "glue/rexglue-sdk-main/include/rex/string/numeric.h"
 if os.path.exists(numeric_path):
     with open(numeric_path) as f: num = f.read()
