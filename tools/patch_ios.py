@@ -137,7 +137,19 @@ if os.path.exists(ehp_path):
         f.write("#include <rex/exception_handler.h>\n")
     print("OK: exception_handler_posix.cpp stubbed for iOS arm64")
 
-# 4d3. numeric.h: replace float from_chars with strtod (iOS <26.0 availability)
+# 4d3. memory_mac.cpp: guard MAP_JIT for iOS (may not be defined)
+mem_path = "glue/rexglue-sdk-main/src/core/memory_mac.cpp"
+if os.path.exists(mem_path):
+    with open(mem_path) as f: mem = f.read()
+    # Guard MAP_JIT usage with #ifdef MAP_JIT
+    old_jit = "    flags |= MAP_JIT;"
+    new_jit = "#ifdef MAP_JIT\n    flags |= MAP_JIT;\n#endif"
+    if old_jit in mem and "#ifdef MAP_JIT" not in mem:
+        mem = mem.replace(old_jit, new_jit)
+        print("OK: MAP_JIT guarded with #ifdef in memory_mac.cpp")
+    with open(mem_path, "w") as f: f.write(mem)
+
+# 4d4. numeric.h: replace float from_chars with strtod (iOS <26.0 availability)
 numeric_path = "glue/rexglue-sdk-main/include/rex/string/numeric.h"
 if os.path.exists(numeric_path):
     with open(numeric_path) as f: num = f.read()
