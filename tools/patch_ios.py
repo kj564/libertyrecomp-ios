@@ -2,6 +2,20 @@
 """Patch LibertyRecompAndroid for iOS build."""
 import json, os, re, shutil
 
+# 0. Force o1heap submodule to v3.0.0 (commit 388a73fd)
+# setup_repo.py may not checkout the correct commit for nested submodules.
+# v3.0.0 has O1HEAP_ALIGNMENT = sizeof(void*) * 2U = 16 (matches SizeHeader)
+# v2.x has O1HEAP_ALIGNMENT = sizeof(void*) * 4U = 32 (mismatch, breaks heap.cpp)
+import subprocess
+o1heap_dir = "glue/rexglue-sdk-main/thirdparty/o1heap"
+if os.path.exists(o1heap_dir):
+    r = subprocess.run(["git", "checkout", "388a73fd9007300e5130c5fe352d9ce3288b6dde"],
+                       cwd=o1heap_dir, capture_output=True, text=True)
+    if r.returncode == 0:
+        print("OK: o1heap forced to v3.0.0 (commit 388a73fd)")
+    else:
+        print(f"WARN: o1heap checkout failed: {r.stderr[:100]}")
+
 # 1. thirdparty/CMakeLists.txt — comment out problematic add_subdirectory
 path = "thirdparty/CMakeLists.txt"
 with open(path) as f: lines = f.readlines()
