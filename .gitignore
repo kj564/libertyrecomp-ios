@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # secrets
 .env
 
@@ -25,3 +26,7 @@ ai-shorts/*/bakeoff/*.mp4
 
 # local editor config
 .vscode/
+=======
+*.pyc
+__pycache__/
+>>>>>>> 6b3cb2ad90e85fb2e7158260c56ca0d54475ffc0

@@ -1,0 +1,101 @@
+name: LibertyRecomp iOS build
+
+workflows:
+  ios-build:
+    name: LibertyRecomp iOS (unsigned IPA)
+    instance_type: mac_mini_m2
+    max_build_duration: 120
+    environment:
+      vars:
+        LIBERTY_IOS_BUNDLE_IDENTIFIER: "com.libertyrecomp.iphone13"
+      xcode: latest
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: main
+          include: true
+      cancel_previous_builds: true
+    scripts:
+      - name: Install deps
+        script: brew install cmake ninja pkg-config llvm@18 molten-vk
+
+      - name: Install vcpkg
+        script: |
+          git clone https://github.com/microsoft/vcpkg.git /tmp/vcpkg
+          /tmp/vcpkg/bootstrap-vcpkg.sh
+
+      - name: Copy arm64-ios triplet
+        script: cp vcpkg/triplets/arm64-ios.cmake /tmp/vcpkg/triplets/
+
+      - name: Clone + setup upstream
+        script: |
+          git clone --depth=1 https://github.com/vaduur/LibertyRecompAndroid.git
+          cd LibertyRecompAndroid && python3 tools/setup_repo.py
+
+      - name: Patch upstream for iOS
+        script: |
+          cd LibertyRecompAndroid
+          python3 ../tools/patch_ios.py
+          mkdir -p cmake
+          cp ../cmake/FindPythonInterp.cmake cmake/
+          echo "FindPythonInterp stub copied"
+
+      - name: Verify patches applied
+        script: |
+          cd LibertyRecompAndroid
+          echo "=== thirdparty/CMakeLists.txt MoltenVK ==="
+          grep -n "MoltenVK" thirdparty/CMakeLists.txt | head -5
+          echo "=== RexGlue Vulkan ==="
+          grep -n "REXGLUE_USE_VULKAN" glue/rexglue-sdk-main/CMakeLists.txt | head -5
+          echo "=== Root CMakeLists force cache var ==="
+          grep -n "REXGLUE_USE_VULKAN OFF CACHE" CMakeLists.txt | head -5
+          echo "=== Root CMakeLists add_subdirectory(glue) ==="
+          grep -n "add_subdirectory.*glue" CMakeLists.txt | head -5
+
+      - name: Create dummy payload + copy config
+        script: |
+          cd LibertyRecompAndroid
+          mkdir -p tools/local_game_payload/{common,xbox360,audio,update}
+          for f in default.xex default.xexp aes_key.bin common.rpf xbox360.rpf audio.rpf; do touch "tools/local_game_payload/$f"; done
+          cp ../config.toml config.toml || true
+
+      - name: Configure
+        script: |
+          cd LibertyRecompAndroid
+          export CC=/opt/homebrew/opt/llvm@18/bin/clang
+          export CXX=/opt/homebrew/opt/llvm@18/bin/clang++
+          cmake --preset ios-release \
+            -DCMAKE_C_COMPILER=/opt/homebrew/opt/llvm@18/bin/clang \
+            -DCMAKE_CXX_COMPILER=/opt/homebrew/opt/llvm@18/bin/clang++ \
+            -DLIBERTY_IOS_BUNDLE_IDENTIFIER="com.libertyrecomp.iphone13" \
+            -DLIBERTY_RECOMP_EMBEDDED_ASSETS=OFF \
+            -DREXGLUE_USE_VULKAN=OFF \
+            -DREXGLUE_USE_D3D12=OFF \
+            -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED=NO \
+            -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED=NO \
+            -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY="" \
+            -DCMAKE_MODULE_PATH=$(pwd)/cmake \
+            -DCMAKE_TOOLCHAIN_FILE=/tmp/vcpkg/scripts/buildsystems/vcpkg.cmake \
+            -DVCPKG_TARGET_TRIPLET=arm64-ios \
+            -DVCPKG_HOST_TRIPLET=arm64-osx \
+            -DVCPKG_OVERLAY_TRIPLETS=/tmp/vcpkg/triplets \
+            -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$(pwd)/toolchains/ios.cmake \
+            -GXcode
+
+      - name: Build .app + package .ipa
+        script: |
+          cd LibertyRecompAndroid
+          cmake --build out/build/ios-release --config Release -j$(sysctl -n hw.ncpu) 2>&1 | tail -200
+          APP=$(find out/build/ios-release -name "*.app" -type d -not -path "*/vcpkg_installed/*" | head -1)
+          echo "Found app: $APP"
+          if [ -z "$APP" ]; then echo "ERROR: no .app found"; ls -la out/build/ios-release/; exit 1; fi
+          du -sh "$APP"
+          APP_DIR=$(dirname "$APP"); APP_NAME=$(basename "$APP")
+          cd "$APP_DIR"; rm -rf Payload; mkdir Payload; cp -R "$APP_NAME" Payload/
+          zip -r -q "LibertyRecomp-unsigned.ipa" Payload
+          ls -la "LibertyRecomp-unsigned.ipa"
+
+    artifacts:
+      - LibertyRecompAndroid/out/build/ios-release/**/LibertyRecomp-unsigned.ipa
+      - LibertyRecompAndroid/out/build/ios-release/CMakeCache.txt

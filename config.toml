@@ -1,0 +1,64 @@
+# LibertyRecomp config — iPhone 13 / iOS 18 tuned
+# 4GB RAM, A15 Bionic, Metal 3, 1170×2532 display
+#
+# Drop this file at ~/Documents/LibertyRecomp/config.toml on your iPhone 13
+# (after first launch creates the dir).
+#
+# All keys here are from LibertyRecomp/user/config_def.h in upstream.
+
+[Video]
+WindowSize = 1280
+WindowWidth = 1280
+WindowHeight = 720
+Fullscreen = true
+VSync = true
+FPS = 30
+ResolutionScale = 0.85
+AntiAliasing = "FXAA"
+TransparencyAntiAliasing = false
+AnisotropicFiltering = 8
+ShadowResolution = "x1024"
+ShadowFilter = "PCF3x3"
+ReflectionResolution = "Half"
+MotionBlur = "Off"
+DepthOfField = "Off"
+FilmGrain = "Off"
+ChromaticAberration = "Off"
+SSAO = "Off"
+EnableBloom = false
+EnableSunShafts = false
+
+# MetalFX upscaler — big win on A15 (Metal 3, iOS 16+)
+Upscaler = "MetalFX"
+UpscaleQuality = "Quality"
+UpscaleSharpness = 0.6
+DynamicResolution = "On"
+MinResolutionScale = 0.5
+TargetFrameTime = 33.33
+FrameGeneration = "Off"
+
+[Graphics]
+RenderDistanceMultiplier = 0.8
+LODDistanceMultiplier = 0.8
+StreamingDistanceMultiplier = 0.7
+FarClipMultiplier = 0.9
+DisableLOD = false
+EntityFadeDistance = 400.0
+MaxRenderDistance = 800.0
+PedestrianLODDistance = 150.0
+VehicleLODDistance = 220.0
+BuildingLODDistance = 80.0
+
+[Audio]
+ChannelConfiguration = "Stereo"
+MuteOnFocusLost = true
+MusicAttenuation = true
+
+[Input]
+TouchControls = "on"
+MotionControlsEnabled = false
+MotionSteering = true
+MotionReload = false
+
+[System]
+Autosave = true

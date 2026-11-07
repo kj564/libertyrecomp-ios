@@ -2,3 +2,3466 @@
 [00:00:03.874] Server  LOG     ○ Compiling / ...
 [00:52:35.429] Browser INFO    vide event:  play
 [00:52:38.846] Browser INFO    vide event:  pause
+[01:31:29.265] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.268] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.270] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.272] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.275] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.277] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.279] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.281] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.284] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.286] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.288] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.290] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.293] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.295] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.297] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.299] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.302] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.303] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.305] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.306] Server  ERROR   ⨯ ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:29.308] Server  LOG     ✓ Compiled in 368ms
+[01:31:30.125] Server  WARN    ⚠ Cross origin request detected from preview-chat-582768a9-7213-476f-8e62-5c569e37a9a4.space-z.ai to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+[01:31:30.213] Browser ERROR   ./src/app/page.tsx:8:1
+Module not found: Can't resolve 'socket.io-client'
+   6 | import { Badge } from "@/components/ui/badge";
+   7 | import { Battery, Wifi, Play, Square, Gamepad2, Monitor, Loader2 } from "lucide-react";
+>  8 | import { io, Socket } from "socket.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | // ─── GTA IV keyboard mapping ─────────────────────────────────────────────
+  11 | // Sent to PC via WebSocket, simulated as keystrokes (xdotool/nircmd)
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:31:32.538] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:6:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+> 6 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import debugModule from "debug"; // debug()
+  8 | const debug = debugModule("socket.io-client:manager"); // debug()
+  9 | export class Manager extends Emitter {
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.540] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:6:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+> 6 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import debugModule from "debug"; // debug()
+  8 | const debug = debugModule("socket.io-client:manager"); // debug()
+  9 | export class Manager extends Emitter {
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.543] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/socket.js:3:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  1 | import { PacketType } from "socket.io-parser";
+  2 | import { on } from "./on.js";
+> 3 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import debugModule from "debug"; // debug()
+  5 | const debug = debugModule("socket.io-client:socket"); // debug()
+  6 | /**
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/socket.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.565] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/socket.js:3:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  1 | import { PacketType } from "socket.io-parser";
+  2 | import { on } from "./on.js";
+> 3 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import debugModule from "debug"; // debug()
+  5 | const debug = debugModule("socket.io-client:socket"); // debug()
+  6 | /**
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/socket.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.567] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:6:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+> 6 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | export class Manager extends Emitter {
+  8 |     constructor(uri, opts) {
+  9 |         var _a;
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.571] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:6:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+> 6 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | export class Manager extends Emitter {
+  8 |     constructor(uri, opts) {
+  9 |         var _a;
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.573] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/socket.js:3:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  1 | import { PacketType } from "socket.io-parser";
+  2 | import { on } from "./on.js";
+> 3 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | /**
+  5 |  * Internal events.
+  6 |  * These events can't be emitted by the user.
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/socket.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.575] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/socket.js:3:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  1 | import { PacketType } from "socket.io-parser";
+  2 | import { on } from "./on.js";
+> 3 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | /**
+  5 |  * Internal events.
+  6 |  * These events can't be emitted by the user.
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/socket.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.575] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/index.js:62:1
+Module not found: Can't resolve 'engine.io-client'
+  60 |  */
+  61 | export { Manager, Socket, lookup as io, lookup as connect, lookup as default, };
+> 62 | export { Fetch, NodeXHR, XHR, NodeWebSocket, WebSocket, WebTransport, } from "engine.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  63 |
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.576] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.578] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.579] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.580] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.581] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/url.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { parse } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import debugModule from "debug"; // debug()
+  3 | const debug = debugModule("socket.io-client:url"); // debug()
+  4 | /**
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/url.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.581] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/url.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { parse } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import debugModule from "debug"; // debug()
+  3 | const debug = debugModule("socket.io-client:url"); // debug()
+  4 | /**
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/url.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.582] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/index.js:58:1
+Module not found: Can't resolve 'engine.io-client'
+  56 |  */
+  57 | export { Manager, Socket, lookup as io, lookup as connect, lookup as default, };
+> 58 | export { Fetch, NodeXHR, XHR, NodeWebSocket, WebSocket, WebTransport, } from "engine.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  59 |
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.583] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.584] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.585] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.586] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.586] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/url.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { parse } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | /**
+  3 |  * URL parser.
+  4 |  *
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/url.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.587] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/url.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { parse } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | /**
+  3 |  * URL parser.
+  4 |  *
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/url.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.587] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/index.js:55:1
+Module not found: Can't resolve 'socket.io-parser'
+  53 |  * @public
+  54 |  */
+> 55 | export { protocol } from "socket.io-parser";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  56 | /**
+  57 |  * Expose constructors for standalone build.
+  58 |  *
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.588] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:3:1
+Module not found: Can't resolve 'socket.io-parser'
+  1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+  2 | import { Socket } from "./socket.js";
+> 3 | import * as parser from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+  6 | import { Emitter, } from "@socket.io/component-emitter";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.590] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:3:1
+Module not found: Can't resolve 'socket.io-parser'
+  1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+  2 | import { Socket } from "./socket.js";
+> 3 | import * as parser from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+  6 | import { Emitter, } from "@socket.io/component-emitter";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.591] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/socket.js:1:1
+Module not found: Can't resolve 'socket.io-parser'
+> 1 | import { PacketType } from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { on } from "./on.js";
+  3 | import { Emitter, } from "@socket.io/component-emitter";
+  4 | import debugModule from "debug"; // debug()
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/socket.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.593] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/socket.js:1:1
+Module not found: Can't resolve 'socket.io-parser'
+> 1 | import { PacketType } from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { on } from "./on.js";
+  3 | import { Emitter, } from "@socket.io/component-emitter";
+  4 | import debugModule from "debug"; // debug()
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/socket.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.594] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/index.js:51:1
+Module not found: Can't resolve 'socket.io-parser'
+  49 |  * @public
+  50 |  */
+> 51 | export { protocol } from "socket.io-parser";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  52 | /**
+  53 |  * Expose constructors for standalone build.
+  54 |  *
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.595] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:3:1
+Module not found: Can't resolve 'socket.io-parser'
+  1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+  2 | import { Socket } from "./socket.js";
+> 3 | import * as parser from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+  6 | import { Emitter, } from "@socket.io/component-emitter";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.596] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:3:1
+Module not found: Can't resolve 'socket.io-parser'
+  1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+  2 | import { Socket } from "./socket.js";
+> 3 | import * as parser from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+  6 | import { Emitter, } from "@socket.io/component-emitter";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.598] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/socket.js:1:1
+Module not found: Can't resolve 'socket.io-parser'
+> 1 | import { PacketType } from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { on } from "./on.js";
+  3 | import { Emitter, } from "@socket.io/component-emitter";
+  4 | /**
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/socket.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.599] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/socket.js:1:1
+Module not found: Can't resolve 'socket.io-parser'
+> 1 | import { PacketType } from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { on } from "./on.js";
+  3 | import { Emitter, } from "@socket.io/component-emitter";
+  4 | /**
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/socket.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.603] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:6:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+> 6 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import debugModule from "debug"; // debug()
+  8 | const debug = debugModule("socket.io-client:manager"); // debug()
+  9 | export class Manager extends Emitter {
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.604] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:6:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+> 6 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import debugModule from "debug"; // debug()
+  8 | const debug = debugModule("socket.io-client:manager"); // debug()
+  9 | export class Manager extends Emitter {
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.606] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/socket.js:3:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  1 | import { PacketType } from "socket.io-parser";
+  2 | import { on } from "./on.js";
+> 3 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import debugModule from "debug"; // debug()
+  5 | const debug = debugModule("socket.io-client:socket"); // debug()
+  6 | /**
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/socket.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.608] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/socket.js:3:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  1 | import { PacketType } from "socket.io-parser";
+  2 | import { on } from "./on.js";
+> 3 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import debugModule from "debug"; // debug()
+  5 | const debug = debugModule("socket.io-client:socket"); // debug()
+  6 | /**
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/socket.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.609] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:6:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+> 6 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | export class Manager extends Emitter {
+  8 |     constructor(uri, opts) {
+  9 |         var _a;
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.611] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:6:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+> 6 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | export class Manager extends Emitter {
+  8 |     constructor(uri, opts) {
+  9 |         var _a;
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.613] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/socket.js:3:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  1 | import { PacketType } from "socket.io-parser";
+  2 | import { on } from "./on.js";
+> 3 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | /**
+  5 |  * Internal events.
+  6 |  * These events can't be emitted by the user.
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/socket.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.615] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/socket.js:3:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  1 | import { PacketType } from "socket.io-parser";
+  2 | import { on } from "./on.js";
+> 3 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | /**
+  5 |  * Internal events.
+  6 |  * These events can't be emitted by the user.
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/socket.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.616] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/index.js:62:1
+Module not found: Can't resolve 'engine.io-client'
+  60 |  */
+  61 | export { Manager, Socket, lookup as io, lookup as connect, lookup as default, };
+> 62 | export { Fetch, NodeXHR, XHR, NodeWebSocket, WebSocket, WebTransport, } from "engine.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  63 |
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.617] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.618] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.619] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.621] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.621] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/url.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { parse } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import debugModule from "debug"; // debug()
+  3 | const debug = debugModule("socket.io-client:url"); // debug()
+  4 | /**
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/url.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.622] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/url.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { parse } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import debugModule from "debug"; // debug()
+  3 | const debug = debugModule("socket.io-client:url"); // debug()
+  4 | /**
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/url.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.622] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/index.js:58:1
+Module not found: Can't resolve 'engine.io-client'
+  56 |  */
+  57 | export { Manager, Socket, lookup as io, lookup as connect, lookup as default, };
+> 58 | export { Fetch, NodeXHR, XHR, NodeWebSocket, WebSocket, WebTransport, } from "engine.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  59 |
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.624] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.628] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.629] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.631] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.632] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/url.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { parse } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | /**
+  3 |  * URL parser.
+  4 |  *
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/url.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.632] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/url.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { parse } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | /**
+  3 |  * URL parser.
+  4 |  *
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/url.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.633] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/index.js:55:1
+Module not found: Can't resolve 'socket.io-parser'
+  53 |  * @public
+  54 |  */
+> 55 | export { protocol } from "socket.io-parser";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  56 | /**
+  57 |  * Expose constructors for standalone build.
+  58 |  *
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.634] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:3:1
+Module not found: Can't resolve 'socket.io-parser'
+  1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+  2 | import { Socket } from "./socket.js";
+> 3 | import * as parser from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+  6 | import { Emitter, } from "@socket.io/component-emitter";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.635] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:3:1
+Module not found: Can't resolve 'socket.io-parser'
+  1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+  2 | import { Socket } from "./socket.js";
+> 3 | import * as parser from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+  6 | import { Emitter, } from "@socket.io/component-emitter";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.636] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/socket.js:1:1
+Module not found: Can't resolve 'socket.io-parser'
+> 1 | import { PacketType } from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { on } from "./on.js";
+  3 | import { Emitter, } from "@socket.io/component-emitter";
+  4 | import debugModule from "debug"; // debug()
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/socket.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.638] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/socket.js:1:1
+Module not found: Can't resolve 'socket.io-parser'
+> 1 | import { PacketType } from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { on } from "./on.js";
+  3 | import { Emitter, } from "@socket.io/component-emitter";
+  4 | import debugModule from "debug"; // debug()
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/socket.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.639] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/index.js:51:1
+Module not found: Can't resolve 'socket.io-parser'
+  49 |  * @public
+  50 |  */
+> 51 | export { protocol } from "socket.io-parser";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  52 | /**
+  53 |  * Expose constructors for standalone build.
+  54 |  *
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.640] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:3:1
+Module not found: Can't resolve 'socket.io-parser'
+  1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+  2 | import { Socket } from "./socket.js";
+> 3 | import * as parser from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+  6 | import { Emitter, } from "@socket.io/component-emitter";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.641] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:3:1
+Module not found: Can't resolve 'socket.io-parser'
+  1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+  2 | import { Socket } from "./socket.js";
+> 3 | import * as parser from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+  6 | import { Emitter, } from "@socket.io/component-emitter";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.642] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/socket.js:1:1
+Module not found: Can't resolve 'socket.io-parser'
+> 1 | import { PacketType } from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { on } from "./on.js";
+  3 | import { Emitter, } from "@socket.io/component-emitter";
+  4 | /**
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/socket.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.644] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/socket.js:1:1
+Module not found: Can't resolve 'socket.io-parser'
+> 1 | import { PacketType } from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { on } from "./on.js";
+  3 | import { Emitter, } from "@socket.io/component-emitter";
+  4 | /**
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/socket.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.647] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:6:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+> 6 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import debugModule from "debug"; // debug()
+  8 | const debug = debugModule("socket.io-client:manager"); // debug()
+  9 | export class Manager extends Emitter {
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.649] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:6:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+> 6 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import debugModule from "debug"; // debug()
+  8 | const debug = debugModule("socket.io-client:manager"); // debug()
+  9 | export class Manager extends Emitter {
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.650] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/socket.js:3:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  1 | import { PacketType } from "socket.io-parser";
+  2 | import { on } from "./on.js";
+> 3 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import debugModule from "debug"; // debug()
+  5 | const debug = debugModule("socket.io-client:socket"); // debug()
+  6 | /**
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/socket.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.652] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/socket.js:3:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  1 | import { PacketType } from "socket.io-parser";
+  2 | import { on } from "./on.js";
+> 3 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import debugModule from "debug"; // debug()
+  5 | const debug = debugModule("socket.io-client:socket"); // debug()
+  6 | /**
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/socket.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.653] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:6:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+> 6 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | export class Manager extends Emitter {
+  8 |     constructor(uri, opts) {
+  9 |         var _a;
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.654] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:6:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+> 6 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | export class Manager extends Emitter {
+  8 |     constructor(uri, opts) {
+  9 |         var _a;
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.656] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/socket.js:3:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  1 | import { PacketType } from "socket.io-parser";
+  2 | import { on } from "./on.js";
+> 3 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | /**
+  5 |  * Internal events.
+  6 |  * These events can't be emitted by the user.
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/socket.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.664] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/socket.js:3:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  1 | import { PacketType } from "socket.io-parser";
+  2 | import { on } from "./on.js";
+> 3 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | /**
+  5 |  * Internal events.
+  6 |  * These events can't be emitted by the user.
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/socket.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.664] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/index.js:62:1
+Module not found: Can't resolve 'engine.io-client'
+  60 |  */
+  61 | export { Manager, Socket, lookup as io, lookup as connect, lookup as default, };
+> 62 | export { Fetch, NodeXHR, XHR, NodeWebSocket, WebSocket, WebTransport, } from "engine.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  63 |
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.666] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.667] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.668] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.670] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.670] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/url.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { parse } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import debugModule from "debug"; // debug()
+  3 | const debug = debugModule("socket.io-client:url"); // debug()
+  4 | /**
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/url.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.670] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/url.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { parse } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import debugModule from "debug"; // debug()
+  3 | const debug = debugModule("socket.io-client:url"); // debug()
+  4 | /**
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/url.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.671] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/index.js:58:1
+Module not found: Can't resolve 'engine.io-client'
+  56 |  */
+  57 | export { Manager, Socket, lookup as io, lookup as connect, lookup as default, };
+> 58 | export { Fetch, NodeXHR, XHR, NodeWebSocket, WebSocket, WebTransport, } from "engine.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  59 |
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.672] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.673] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.674] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.675] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.675] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/url.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { parse } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | /**
+  3 |  * URL parser.
+  4 |  *
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/url.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.676] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/url.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { parse } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | /**
+  3 |  * URL parser.
+  4 |  *
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/url.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.677] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/index.js:55:1
+Module not found: Can't resolve 'socket.io-parser'
+  53 |  * @public
+  54 |  */
+> 55 | export { protocol } from "socket.io-parser";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  56 | /**
+  57 |  * Expose constructors for standalone build.
+  58 |  *
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.678] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:3:1
+Module not found: Can't resolve 'socket.io-parser'
+  1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+  2 | import { Socket } from "./socket.js";
+> 3 | import * as parser from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+  6 | import { Emitter, } from "@socket.io/component-emitter";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.679] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:3:1
+Module not found: Can't resolve 'socket.io-parser'
+  1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+  2 | import { Socket } from "./socket.js";
+> 3 | import * as parser from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+  6 | import { Emitter, } from "@socket.io/component-emitter";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.680] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/socket.js:1:1
+Module not found: Can't resolve 'socket.io-parser'
+> 1 | import { PacketType } from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { on } from "./on.js";
+  3 | import { Emitter, } from "@socket.io/component-emitter";
+  4 | import debugModule from "debug"; // debug()
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/socket.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.682] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/socket.js:1:1
+Module not found: Can't resolve 'socket.io-parser'
+> 1 | import { PacketType } from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { on } from "./on.js";
+  3 | import { Emitter, } from "@socket.io/component-emitter";
+  4 | import debugModule from "debug"; // debug()
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/socket.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.682] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/index.js:51:1
+Module not found: Can't resolve 'socket.io-parser'
+  49 |  * @public
+  50 |  */
+> 51 | export { protocol } from "socket.io-parser";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  52 | /**
+  53 |  * Expose constructors for standalone build.
+  54 |  *
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.684] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:3:1
+Module not found: Can't resolve 'socket.io-parser'
+  1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+  2 | import { Socket } from "./socket.js";
+> 3 | import * as parser from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+  6 | import { Emitter, } from "@socket.io/component-emitter";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.685] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:3:1
+Module not found: Can't resolve 'socket.io-parser'
+  1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+  2 | import { Socket } from "./socket.js";
+> 3 | import * as parser from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+  6 | import { Emitter, } from "@socket.io/component-emitter";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.686] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/socket.js:1:1
+Module not found: Can't resolve 'socket.io-parser'
+> 1 | import { PacketType } from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { on } from "./on.js";
+  3 | import { Emitter, } from "@socket.io/component-emitter";
+  4 | /**
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/socket.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.688] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/socket.js:1:1
+Module not found: Can't resolve 'socket.io-parser'
+> 1 | import { PacketType } from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { on } from "./on.js";
+  3 | import { Emitter, } from "@socket.io/component-emitter";
+  4 | /**
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/socket.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.691] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:6:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+> 6 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import debugModule from "debug"; // debug()
+  8 | const debug = debugModule("socket.io-client:manager"); // debug()
+  9 | export class Manager extends Emitter {
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.693] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:6:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+> 6 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import debugModule from "debug"; // debug()
+  8 | const debug = debugModule("socket.io-client:manager"); // debug()
+  9 | export class Manager extends Emitter {
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.695] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/socket.js:3:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  1 | import { PacketType } from "socket.io-parser";
+  2 | import { on } from "./on.js";
+> 3 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import debugModule from "debug"; // debug()
+  5 | const debug = debugModule("socket.io-client:socket"); // debug()
+  6 | /**
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/socket.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.696] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/socket.js:3:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  1 | import { PacketType } from "socket.io-parser";
+  2 | import { on } from "./on.js";
+> 3 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import debugModule from "debug"; // debug()
+  5 | const debug = debugModule("socket.io-client:socket"); // debug()
+  6 | /**
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/socket.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.697] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:6:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+> 6 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | export class Manager extends Emitter {
+  8 |     constructor(uri, opts) {
+  9 |         var _a;
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.699] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:6:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+> 6 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | export class Manager extends Emitter {
+  8 |     constructor(uri, opts) {
+  9 |         var _a;
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.700] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/socket.js:3:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  1 | import { PacketType } from "socket.io-parser";
+  2 | import { on } from "./on.js";
+> 3 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | /**
+  5 |  * Internal events.
+  6 |  * These events can't be emitted by the user.
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/socket.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.702] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/socket.js:3:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  1 | import { PacketType } from "socket.io-parser";
+  2 | import { on } from "./on.js";
+> 3 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | /**
+  5 |  * Internal events.
+  6 |  * These events can't be emitted by the user.
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/socket.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.703] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/index.js:62:1
+Module not found: Can't resolve 'engine.io-client'
+  60 |  */
+  61 | export { Manager, Socket, lookup as io, lookup as connect, lookup as default, };
+> 62 | export { Fetch, NodeXHR, XHR, NodeWebSocket, WebSocket, WebTransport, } from "engine.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  63 |
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.704] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.705] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.706] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.707] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.708] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/url.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { parse } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import debugModule from "debug"; // debug()
+  3 | const debug = debugModule("socket.io-client:url"); // debug()
+  4 | /**
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/url.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.708] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/url.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { parse } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import debugModule from "debug"; // debug()
+  3 | const debug = debugModule("socket.io-client:url"); // debug()
+  4 | /**
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/url.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.709] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/index.js:58:1
+Module not found: Can't resolve 'engine.io-client'
+  56 |  */
+  57 | export { Manager, Socket, lookup as io, lookup as connect, lookup as default, };
+> 58 | export { Fetch, NodeXHR, XHR, NodeWebSocket, WebSocket, WebTransport, } from "engine.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  59 |
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.710] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.711] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.712] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.713] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.713] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/url.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { parse } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | /**
+  3 |  * URL parser.
+  4 |  *
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/url.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.714] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/url.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { parse } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | /**
+  3 |  * URL parser.
+  4 |  *
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/url.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.714] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/index.js:55:1
+Module not found: Can't resolve 'socket.io-parser'
+  53 |  * @public
+  54 |  */
+> 55 | export { protocol } from "socket.io-parser";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  56 | /**
+  57 |  * Expose constructors for standalone build.
+  58 |  *
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.715] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:3:1
+Module not found: Can't resolve 'socket.io-parser'
+  1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+  2 | import { Socket } from "./socket.js";
+> 3 | import * as parser from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+  6 | import { Emitter, } from "@socket.io/component-emitter";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.716] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/manager.js:3:1
+Module not found: Can't resolve 'socket.io-parser'
+  1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+  2 | import { Socket } from "./socket.js";
+> 3 | import * as parser from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+  6 | import { Emitter, } from "@socket.io/component-emitter";
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.718] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/socket.js:1:1
+Module not found: Can't resolve 'socket.io-parser'
+> 1 | import { PacketType } from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { on } from "./on.js";
+  3 | import { Emitter, } from "@socket.io/component-emitter";
+  4 | import debugModule from "debug"; // debug()
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/socket.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.720] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm-debug/socket.js:1:1
+Module not found: Can't resolve 'socket.io-parser'
+> 1 | import { PacketType } from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { on } from "./on.js";
+  3 | import { Emitter, } from "@socket.io/component-emitter";
+  4 | import debugModule from "debug"; // debug()
+
+
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/socket.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.720] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/index.js:51:1
+Module not found: Can't resolve 'socket.io-parser'
+  49 |  * @public
+  50 |  */
+> 51 | export { protocol } from "socket.io-parser";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  52 | /**
+  53 |  * Expose constructors for standalone build.
+  54 |  *
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.721] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:3:1
+Module not found: Can't resolve 'socket.io-parser'
+  1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+  2 | import { Socket } from "./socket.js";
+> 3 | import * as parser from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+  6 | import { Emitter, } from "@socket.io/component-emitter";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.722] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/manager.js:3:1
+Module not found: Can't resolve 'socket.io-parser'
+  1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+  2 | import { Socket } from "./socket.js";
+> 3 | import * as parser from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+  6 | import { Emitter, } from "@socket.io/component-emitter";
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.724] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/socket.js:1:1
+Module not found: Can't resolve 'socket.io-parser'
+> 1 | import { PacketType } from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { on } from "./on.js";
+  3 | import { Emitter, } from "@socket.io/component-emitter";
+  4 | /**
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/socket.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:32.726] Server  ERROR   ⨯ ./node_modules/socket.io-client/build/esm/socket.js:1:1
+Module not found: Can't resolve 'socket.io-parser'
+> 1 | import { PacketType } from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { on } from "./on.js";
+  3 | import { Emitter, } from "@socket.io/component-emitter";
+  4 | /**
+
+
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/socket.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:31:33.079] Browser ERROR   ./node_modules/socket.io-client/build/esm-debug/manager.js:6:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+> 6 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | import debugModule from "debug"; // debug()
+  8 | const debug = debugModule("socket.io-client:manager"); // debug()
+  9 | export class Manager extends Emitter {
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:31:33.079] Browser ERROR   ./node_modules/socket.io-client/build/esm-debug/socket.js:3:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  1 | import { PacketType } from "socket.io-parser";
+  2 | import { on } from "./on.js";
+> 3 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import debugModule from "debug"; // debug()
+  5 | const debug = debugModule("socket.io-client:socket"); // debug()
+  6 | /**
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/socket.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:31:33.079] Browser ERROR   ./node_modules/socket.io-client/build/esm/manager.js:6:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+> 6 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | export class Manager extends Emitter {
+  8 |     constructor(uri, opts) {
+  9 |         var _a;
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:31:33.079] Browser ERROR   ./node_modules/socket.io-client/build/esm/socket.js:3:1
+Module not found: Can't resolve '@socket.io/component-emitter'
+  1 | import { PacketType } from "socket.io-parser";
+  2 | import { on } from "./on.js";
+> 3 | import { Emitter, } from "@socket.io/component-emitter";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | /**
+  5 |  * Internal events.
+  6 |  * These events can't be emitted by the user.
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/socket.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:31:33.079] Browser ERROR   ./node_modules/socket.io-client/build/esm-debug/index.js:62:1
+Module not found: Can't resolve 'engine.io-client'
+  60 |  */
+  61 | export { Manager, Socket, lookup as io, lookup as connect, lookup as default, };
+> 62 | export { Fetch, NodeXHR, XHR, NodeWebSocket, WebSocket, WebTransport, } from "engine.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  63 |
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:31:33.079] Browser ERROR   ./node_modules/socket.io-client/build/esm-debug/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:31:33.079] Browser ERROR   ./node_modules/socket.io-client/build/esm-debug/url.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { parse } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import debugModule from "debug"; // debug()
+  3 | const debug = debugModule("socket.io-client:url"); // debug()
+  4 | /**
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/url.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:31:33.079] Browser ERROR   ./node_modules/socket.io-client/build/esm/index.js:58:1
+Module not found: Can't resolve 'engine.io-client'
+  56 |  */
+  57 | export { Manager, Socket, lookup as io, lookup as connect, lookup as default, };
+> 58 | export { Fetch, NodeXHR, XHR, NodeWebSocket, WebSocket, WebTransport, } from "engine.io-client";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  59 |
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:31:33.079] Browser ERROR   ./node_modules/socket.io-client/build/esm/manager.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { Socket } from "./socket.js";
+  3 | import * as parser from "socket.io-parser";
+  4 | import { on } from "./on.js";
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:31:33.079] Browser ERROR   ./node_modules/socket.io-client/build/esm/url.js:1:1
+Module not found: Can't resolve 'engine.io-client'
+> 1 | import { parse } from "engine.io-client";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | /**
+  3 |  * URL parser.
+  4 |  *
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/url.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:31:33.079] Browser ERROR   ./node_modules/socket.io-client/build/esm-debug/index.js:55:1
+Module not found: Can't resolve 'socket.io-parser'
+  53 |  * @public
+  54 |  */
+> 55 | export { protocol } from "socket.io-parser";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  56 | /**
+  57 |  * Expose constructors for standalone build.
+  58 |  *
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:31:33.079] Browser ERROR   ./node_modules/socket.io-client/build/esm-debug/manager.js:3:1
+Module not found: Can't resolve 'socket.io-parser'
+  1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+  2 | import { Socket } from "./socket.js";
+> 3 | import * as parser from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+  6 | import { Emitter, } from "@socket.io/component-emitter";
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/manager.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:31:33.079] Browser ERROR   ./node_modules/socket.io-client/build/esm-debug/socket.js:1:1
+Module not found: Can't resolve 'socket.io-parser'
+> 1 | import { PacketType } from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { on } from "./on.js";
+  3 | import { Emitter, } from "@socket.io/component-emitter";
+  4 | import debugModule from "debug"; // debug()
+
+Import trace:
+  Client Component SSR:
+    ./node_modules/socket.io-client/build/esm-debug/socket.js [Client Component SSR]
+    ./node_modules/socket.io-client/build/esm-debug/index.js [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:31:33.079] Browser ERROR   ./node_modules/socket.io-client/build/esm/index.js:51:1
+Module not found: Can't resolve 'socket.io-parser'
+  49 |  * @public
+  50 |  */
+> 51 | export { protocol } from "socket.io-parser";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  52 | /**
+  53 |  * Expose constructors for standalone build.
+  54 |  *
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:31:33.079] Browser ERROR   ./node_modules/socket.io-client/build/esm/manager.js:3:1
+Module not found: Can't resolve 'socket.io-parser'
+  1 | import { Socket as Engine, installTimerFunctions, nextTick, } from "engine.io-client";
+  2 | import { Socket } from "./socket.js";
+> 3 | import * as parser from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { on } from "./on.js";
+  5 | import { Backoff } from "./contrib/backo2.js";
+  6 | import { Emitter, } from "@socket.io/component-emitter";
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/manager.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:31:33.079] Browser ERROR   ./node_modules/socket.io-client/build/esm/socket.js:1:1
+Module not found: Can't resolve 'socket.io-parser'
+> 1 | import { PacketType } from "socket.io-parser";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { on } from "./on.js";
+  3 | import { Emitter, } from "@socket.io/component-emitter";
+  4 | /**
+
+Import trace:
+  Client Component Browser:
+    ./node_modules/socket.io-client/build/esm/socket.js [Client Component Browser]
+    ./node_modules/socket.io-client/build/esm/index.js [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:31:34.772] Server  LOG     ✓ Compiled in 2.1s
+[01:33:10.659] Server  LOG       Reload env: .env
+[01:34:34.730] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:34:44.543] Server  LOG     [liberty] exited code=0 signal=null
+[01:34:59.434] Server  LOG     [liberty] exited code=0 signal=null
+[01:35:01.769] Server  ERROR   [ffmpeg] [x11grab @ 0x55abb6934fc0] Cannot open display :0.0, error 1.
+[01:35:01.769] Server  ERROR   [ffmpeg] [in#0 @ 0x55abb6934dc0] Error opening input: Input/output error
+Error opening input file :0.0.
+Error opening input files: Input/output error
+[01:35:01.772] Server  LOG     [ffmpeg] exited code=251 signal=null
+[01:35:05.460] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:35:26.283] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:35:40.074] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:36:04.010] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:36:34.486] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:36:38.551] Server  LOG     [liberty] exited code=0 signal=null
+[01:36:59.567] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:37:50.188] Server  LOG     ✓ Compiled in 208ms
+[01:37:58.373] Server  LOG     ✓ Compiled in 174ms
+[01:38:17.868] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:39:04.938] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:39:43.887] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:40:12.125] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:40:24.888] Server  LOG     ✓ Compiled in 185ms
+[01:40:31.902] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:40:45.717] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:40:59.515] Server  LOG     ✓ Compiled in 160ms
+[01:41:07.829] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:41:25.612] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:42:26.927] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:42:41.505] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:43:26.200] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:44:06.475] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:44:52.002] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:45:16.106] Server  LOG     [liberty] exited code=0 signal=null
+[01:45:16.615] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
