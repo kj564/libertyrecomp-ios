@@ -134,15 +134,15 @@ if os.path.exists(numeric_path):
     errno = 0;
     char* _endp2 = nullptr;
     v.f32[i] = strtof(_tmp2.c_str(), &_endp2);
-    struct { char* ptr; std::errc ec; } result = { p + (_endp2 - _tmp2.c_str()),
+    struct { const char* ptr; std::errc ec; } result = { p + (_endp2 - _tmp2.c_str()),
       (_endp2 == _tmp2.c_str()) ? std::errc::invalid_argument : std::errc() };'''
     if old_fc2 in num:
         num = num.replace(old_fc2, new_fc2)
         print("OK: float from_chars #2 replaced with strtof")
-    # Add #include <cstdlib> (for strtod/strtof) if not present
+    # Add includes: cstdlib (strtod), cerrno (errno), type_traits (is_same_v)
     if '#include <cstdlib>' not in num:
-        num = num.replace('#include <cstring>', '#include <cstring>\n#include <cstdlib>\n#include <cerrno>')
-        print("OK: added cstdlib + cerrno includes")
+        num = num.replace('#include <cstring>', '#include <cstring>\n#include <cstdlib>\n#include <cerrno>\n#include <type_traits>')
+        print("OK: added cstdlib + cerrno + type_traits includes")
     with open(numeric_path, "w") as f: f.write(num)
 
 # 4e. heap.cpp: NO PATCH NEEDED
