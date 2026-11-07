@@ -103,21 +103,9 @@ with open("cmake/FindPythonInterp.cmake", "w") as f:
     f.write("set(PYTHON_VERSION_PATCH ${Python3_VERSION_PATCH})\n")
 print("OK: FindPythonInterp.cmake stub created")
 
-# 4d. Patch heap.cpp: fix SizeHeader + add o1heapReallocate stub
-heap_path = "glue/rexglue-sdk-main/src/kernel/crt/heap.cpp"
-if os.path.exists(heap_path):
-    with open(heap_path) as f: heap = f.read()
-    # Fix 1: SizeHeader needs 4x uint64_t (32 bytes = O1HEAP_ALIGNMENT on 64-bit)
-    old_hdr = "struct SizeHeader {\n  uint64_t requested_size;\n  uint64_t reserved;  // padding to O1HEAP_ALIGNMENT\n};"
-    new_hdr = "struct SizeHeader {\n  uint64_t requested_size;\n  uint64_t reserved0;\n  uint64_t reserved1;\n  uint64_t reserved2;\n};"
-    if old_hdr in heap:
-        heap = heap.replace(old_hdr, new_hdr)
-        print("OK: SizeHeader expanded to 32 bytes")
-    # Fix 2: o1heapReallocate doesn't exist — replace call with alloc+copy+free
-    old_call = "void* new_ptr = o1heapReallocate(segment->heap, real_host, new_size + kHeaderSize);"
-    new_call = ("void* new_ptr = o1heapAllocate(segment->heap, new_size + kHeaderSize);\n"
-                "    if (new_ptr) { memcpy(new_ptr, real_host, old_size + kHeaderSize); o1heapFree(segment->heap, real_host); }")
-    if old_call in heap:
-        heap = heap.replace(old_call, new_call)
-        print("OK: o1heapReallocate replaced with alloc+copy+free")
-    with open(heap_path, "w") as f: f.write(heap)
+# 4d. heap.cpp: NO PATCH NEEDED
+# o1heap submodule pinned to v3.0.0 (commit 388a73fd) which has:
+# - O1HEAP_ALIGNMENT = sizeof(void*) * 2U = 16 (matches SizeHeader = 16 bytes)
+# - o1heapReallocate() fully implemented
+# Previous patches that expanded SizeHeader to 32 bytes were WRONG —
+# they assumed v2 alignment (sizeof(void*) * 4U = 32) but actual is v3 (16).
