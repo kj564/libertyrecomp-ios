@@ -2,19 +2,30 @@
 """Patch LibertyRecompAndroid for iOS build."""
 import json, os, re, shutil
 
-# 0. Force o1heap submodule to v3.0.0 (commit 388a73fd)
-# setup_repo.py may not checkout the correct commit for nested submodules.
+# 0. Force o1heap to v3.0.0 (git checkout may fail on uninitialized submodules)
 # v3.0.0 has O1HEAP_ALIGNMENT = sizeof(void*) * 2U = 16 (matches SizeHeader)
-# v2.x has O1HEAP_ALIGNMENT = sizeof(void*) * 4U = 32 (mismatch, breaks heap.cpp)
-import subprocess
+# v2.x has O1HEAP_ALIGNMENT = sizeof(void*) * 4U = 32 (breaks heap.cpp)
+import subprocess, shutil
 o1heap_dir = "glue/rexglue-sdk-main/thirdparty/o1heap"
-if os.path.exists(o1heap_dir):
-    r = subprocess.run(["git", "checkout", "388a73fd9007300e5130c5fe352d9ce3288b6dde"],
-                       cwd=o1heap_dir, capture_output=True, text=True)
-    if r.returncode == 0:
-        print("OK: o1heap forced to v3.0.0 (commit 388a73fd)")
+shutil.rmtree(o1heap_dir, ignore_errors=True)
+r = subprocess.run(
+    ["git", "clone", "--depth", "1", "--branch", "3.0.0",
+     "https://github.com/pavel-kirienko/o1heap.git", o1heap_dir],
+    capture_output=True, text=True
+)
+if r.returncode == 0:
+    # Verify alignment
+    h_path = os.path.join(o1heap_dir, "o1heap", "o1heap.h")
+    if os.path.exists(h_path):
+        with open(h_path) as hf: hc = hf.read()
+        if "sizeof(void*) * 2U" in hc:
+            print("OK: o1heap v3.0.0 cloned (O1HEAP_ALIGNMENT = 16, matches SizeHeader)")
+        else:
+            print("WARN: o1heap cloned but alignment mismatch!")
     else:
-        print(f"WARN: o1heap checkout failed: {r.stderr[:100]}")
+        print("WARN: o1heap.h not found after clone")
+else:
+    print(f"WARN: o1heap clone failed: {r.stderr[:100]}")
 
 # 1. thirdparty/CMakeLists.txt — comment out problematic add_subdirectory
 path = "thirdparty/CMakeLists.txt"
