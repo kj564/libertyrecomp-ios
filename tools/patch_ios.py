@@ -103,7 +103,45 @@ with open("cmake/FindPythonInterp.cmake", "w") as f:
     f.write("set(PYTHON_VERSION_PATCH ${Python3_VERSION_PATCH})\n")
 print("OK: FindPythonInterp.cmake stub created")
 
-# 4d. heap.cpp: NO PATCH NEEDED
+# 4d. numeric.h: replace float from_chars with strtod (iOS <26.0 availability)
+numeric_path = "glue/rexglue-sdk-main/include/rex/string/numeric.h"
+if os.path.exists(numeric_path):
+    with open(numeric_path) as f: num = f.read()
+    # Fix 1: line ~136 — float from_chars in floating_point_from_string
+    old_fc1 = 'auto [p, error] = std::from_chars(range.data(), range.data() + range.size(), result,\n                                      std::chars_format::general);'
+    new_fc1 = '''// iOS: std::from_chars for floats unavailable until iOS 26.0
+    // Use strtod as fallback (available on all iOS versions)
+    std::string _tmp(range.data(), range.size());
+    errno = 0;
+    char* _endp = nullptr;
+    if constexpr (std::is_same_v<T, float>) {
+      result = strtof(_tmp.c_str(), &_endp);
+    } else {
+      result = strtod(_tmp.c_str(), &_endp);
+    }
+    auto error = (_endp == _tmp.c_str()) ? std::errc::invalid_argument : std::errc();'''
+    if old_fc1 in num:
+        num = num.replace(old_fc1, new_fc1)
+        print("OK: float from_chars #1 replaced with strtod")
+    # Fix 2: line ~256 — float from_chars in vec128 parser
+    old_fc2 = 'auto result = std::from_chars(p, end, v.f32[i], std::chars_format::general);'
+    new_fc2 = '''// iOS: float from_chars fallback
+    std::string _tmp2(p, end - p);
+    errno = 0;
+    char* _endp2 = nullptr;
+    v.f32[i] = strtof(_tmp2.c_str(), &_endp2);
+    struct { char* ptr; std::errc ec; } result = { p + (_endp2 - _tmp2.c_str()),
+      (_endp2 == _tmp2.c_str()) ? std::errc::invalid_argument : std::errc() };'''
+    if old_fc2 in num:
+        num = num.replace(old_fc2, new_fc2)
+        print("OK: float from_chars #2 replaced with strtof")
+    # Add #include <cstdlib> (for strtod/strtof) if not present
+    if '#include <cstdlib>' not in num:
+        num = num.replace('#include <cstring>', '#include <cstring>\n#include <cstdlib>\n#include <cerrno>')
+        print("OK: added cstdlib + cerrno includes")
+    with open(numeric_path, "w") as f: f.write(num)
+
+# 4e. heap.cpp: NO PATCH NEEDED
 # o1heap submodule pinned to v3.0.0 (commit 388a73fd) which has:
 # - O1HEAP_ALIGNMENT = sizeof(void*) * 2U = 16 (matches SizeHeader = 16 bytes)
 # - o1heapReallocate() fully implemented
