@@ -1,8 +1,4 @@
-[00:00:00.831] Server  LOG     ✓ Ready in 635ms
-[02:09:01.637] Browser INFO    vide event:  play
-[02:09:16.758] Browser INFO    vide event:  seeked
-[02:09:20.169] Browser INFO    vide event:  pause
-[02:29:53.222] Browser INFO    vide event:  play
-[02:30:08.300] Browser INFO    vide event:  seeked
-[02:30:23.377] Browser INFO    vide event:  seeked
-[02:30:23.560] Browser INFO    vide event:  pause
+[00:00:00.835] Server  LOG     ✓ Ready in 641ms
+[00:00:03.874] Server  LOG     ○ Compiling / ...
+[00:52:35.429] Browser INFO    vide event:  play
+[00:52:38.846] Browser INFO    vide event:  pause
